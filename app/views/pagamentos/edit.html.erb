@@ -1,0 +1,10 @@
+<h1>Modificar pagamento</h1>
+
+<% if @veteranos.empty? %>
+  Nenhum veteranos registrado para receber o pagamento!</br>
+<% else %>
+  <%= render 'form' %>
+<% end %>
+
+<%= link_to 'Voltar', @pagamento.venda %> |
+<%= link_to 'Início', '/' %>

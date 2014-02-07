@@ -1,7 +1,10 @@
 <%= form_for(@venda) do |f| %>
   <% if @venda.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@venda.errors.count, "error") %> O que deu caca:</h2>
+      <h2>
+        <%= pluralize(@venda.errors.count, "error") %>
+        O que deu caca:
+      </h2>
 
       <ul>
       <% @venda.errors.full_messages.each do |msg| %>
@@ -18,14 +21,6 @@
   <div class="field">
     <%= f.label :cor_da_mochila %><br />
     <%= f.text_field :cor_da_mochila %>
-  </div>
-  <div class="field">
-    <%= f.label :valor %><br />
-    <%= f.number_field :valor %>
-  </div>
-  <div class="field">
-    <%= f.label :completo %><br />
-    <%= f.check_box :completo %>
   </div>
   <div class="actions">
     <%= f.hidden_field :bixo_id %>

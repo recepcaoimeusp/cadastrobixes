@@ -1,9 +1,23 @@
 class Venda < ActiveRecord::Base
-  attr_accessible :completo, :cor_da_mochila, :valor, :bixo_id
-  
-  belongs_to :bixo
+  attr_accessible :cor_da_mochila, :bixo_id
 
-   validates :valor, :presence => true
-   validates :bixo_id, :presence => true 
-  
+  belongs_to :bixo
+  has_many :pagamentos
+
+  validates :bixo_id, :presence => true
+
+  PRECO = 75
+
+  def valor
+    total = 0
+    pagamentos.each do |pagamento|
+      total += pagamento.valor
+    end
+    total
+  end
+
+  def completo?
+    return valor >= PRECO
+  end
+
 end

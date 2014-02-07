@@ -14,6 +14,7 @@ class VendasController < ApplicationController
   # GET /vendas/1.json
   def show
     @venda = Venda.find(params[:id])
+    @pagamentos = Pagamento.find(:all, :conditions => ["venda_id = (?)", @venda.id])
 
     respond_to do |format|
       format.html # show.html.erb

@@ -7,10 +7,10 @@
 
 <p>
   <b>Valor:</b>
-  <%= @venda.valor %>
+  R$ <%= @venda.valor %>
 </p>
 <b>Completo:</b>
-    <% if @venda.completo==true %>Completo
+    <% if @venda.completo? == true then%>Completo
   	<% else %> Parcial
    	<% end %>
 </p>
@@ -20,7 +20,18 @@
   <%= @venda.bixo.nome%>
 </p>
 
+<b>Pagamentos:</b></br>
+<% @pagamentos.each do |pagamento| %>
+  R$ <%= pagamento.valor %> (<b><%= pagamento.responsavel %></b>)
+  <%= link_to 'Modificar', edit_pagamento_path(pagamento) %>
+  <%= link_to 'Remover', pagamento, :method => :delete,
+        :data => { :confirm => 'Tem certeza?' } %>
+  </br>
+<% end %>
+</br>
+</br>
 
+<%= link_to 'Adicionar pagamento', new_pagamento_path(:venda => @venda.id) %>
 <%= link_to 'Editar', edit_venda_path(@venda) %> |
 <%= link_to 'Voltar', vendas_path %> |
 <%= link_to 'Início', '/' %>

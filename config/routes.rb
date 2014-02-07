@@ -1,5 +1,5 @@
 KitbIXO2::Application.routes.draw do
-  
+
   resources :esporte_bixos
 
 
@@ -16,6 +16,8 @@ KitbIXO2::Application.routes.draw do
   resources :vendas
 
   resources :veteranos
+
+  resources :pagamentos
 
   get "home/index"
 
