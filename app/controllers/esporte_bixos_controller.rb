@@ -54,6 +54,9 @@ class EsporteBixosController < ApplicationController
     	@esporte_bixo.save
     end
 
+    redirect_to bixos_path
+    
+
 #    respond_to do |format|
 #      if @esporte.save
 #        format.html { redirect_to @esporte, :notice => 'esporte was successfully created.' }
