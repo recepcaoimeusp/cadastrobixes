@@ -1,7 +1,10 @@
 <%= form_for(@venda) do |f| %>
   <% if @venda.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@venda.errors.count, "error") %> O que deu caca:</h2>
+      <h2>
+        <%= pluralize(@venda.errors.count, "error") %>
+        O que deu caca:
+      </h2>
 
       <ul>
       <% @venda.errors.full_messages.each do |msg| %>
