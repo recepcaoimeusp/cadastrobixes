@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nome: MyString
+  cor_da_mochila: MyString
+  valor: 1
+  email: MyString
+  telefone: MyString
+  curso_turma: MyString
+  completo: false
+
+two:
+  nome: MyString
+  cor_da_mochila: MyString
+  valor: 1
+  email: MyString
+  telefone: MyString
+  curso_turma: MyString
+  completo: false
