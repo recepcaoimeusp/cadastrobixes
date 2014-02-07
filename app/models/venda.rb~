@@ -1,3 +1,0 @@
-class Venda < ActiveRecord::Base
-  attr_accessible :completo, :cor_da_mochila, :curso_turma, :email, :nome, :telefone, :valor
-end

@@ -1,5 +1,0 @@
-<h1>New venda</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', vendas_path %>
