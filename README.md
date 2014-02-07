@@ -18,7 +18,7 @@ $ bundle install
 $ rake db:create && rake db:migrate
 ```
 
-- Na pasta /config/initializers do projeto, crie um arquivo chamado "secret_token.tb",
+- Na pasta /config/initializers do projeto, crie um arquivo chamado "secret_token.rb",
   e dentro dele coloque:
 ```ruby
 KitbIXO2::Application.config.secret_token = '\*\*\*'
