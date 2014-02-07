@@ -20,10 +20,8 @@ $ rails server
 
 DONE:
 
-- Eu (Victor) fiz uma onde tem uma tabela com as informações de
-todos os bixos, mas puxando tudo da tabela Vendas e filtrando
-um pouco as informações....ta meio POGado. Ainda vou melhorar.
-Foi mais pra efeito de eu aprender um pouco de rails.
+- Separado bixo e vendas em duas tabelas.
+- Criado views e controllers para bixos e vendas (Precisa checar tudo ainda)
 
 
 
@@ -32,6 +30,7 @@ TODO list:
 - Criar um modo (provavelmente via login) de saber qual veterano recebeu 
 cada pagamento do kit.
 
+- Criar uma tabela, controller e view da atlética onde associaremos a
+cada bixo as modalidades que ele está interessado. Provavelmente essas
+modalidades tem que vir de uma lista.
 
-O Victor mandou um e-mail para o Arthur e para a Taís para confirmar 
-que são essas as mudanças que eles pediram.
