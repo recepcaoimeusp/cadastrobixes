@@ -1,5 +1,9 @@
 KitbIXO2::Application.routes.draw do
+  
+  resources :esporte_bixos
 
+
+  resources :esportes
   #get "bixos/new"
 
   #get "bixos/show"

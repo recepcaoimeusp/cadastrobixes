@@ -8,6 +8,8 @@
     <th>Telefone</th>
     <th>Curso</th>
     <th></th>
+    <th></th>
+    <th></th>
   </tr>
 <% @bixos.each do |bixo| %>
   <tr bgcolor=AAFFAA width="100%">
@@ -21,6 +23,7 @@
       <%= link_to 'Remover', bixo, :method => :delete,
             :data => { :confirm => 'Tem certeza?' } %>
     </td>
+    <td><%= link_to 'Atlética', new_esporte_bixo_path(:bixo => bixo.id) %></td>
 
   </tr>
 <% end %>

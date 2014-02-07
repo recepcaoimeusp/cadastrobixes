@@ -1,0 +1,14 @@
+<h1>Listagem de Esportes</h1>
+<%= link_to 'Novo esporte', new_esporte_path %><br>
+<table>
+  <tr>
+    <th>modalidade</th>
+  </tr>
+<% @esportes.each do |esporte| %>
+  <tr bgcolor=AAFFAA width="100%">
+    <td><%= esporte.modalidade %></td>
+
+
+  </tr>
+<% end %>
+</table>
