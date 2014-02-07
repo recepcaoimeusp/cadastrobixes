@@ -3,10 +3,17 @@
 <table>
   <tr>
     <th>modalidade</th>
+    <th></th>
+    <th></th>
   </tr>
 <% @esportes.each do |esporte| %>
   <tr bgcolor=AAFFAA width="100%">
     <td><%= esporte.modalidade %></td>
+    <td><%= link_to 'Ver', esporte %></td>
+    <td>
+      <%= link_to 'Remover', esporte, :method => :delete,
+            :data => { :confirm => 'Tem certeza?' } %>
+    </td>
 
 
   </tr>

@@ -28,6 +28,12 @@ class EsportesController < ApplicationController
   # GET /esportes/1.json
   def show
   	@esporte = Esporte.find(params[:id])
+  	@esporteBixos = EsporteBixo.find_all_by_esporte_id(@esporte.id)
+  	@bixos = []
+  	@hue = "lalalala"
+  	@esporteBixos.each do |registro|
+  		@bixos << Bixo.find(registro.bixo_id) 
+  	end
 
     respond_to do |format|
       format.html # show.html.erb

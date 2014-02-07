@@ -7,7 +7,25 @@
 
 
 
+<h2> Bixos que fazem o esporte </h2> <br>
 
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Telefone</th>
+    <th>Curso</th>
+
+  </tr>
+<% @bixos.each do |bixo| %>
+  <tr bgcolor=AAFFAA width="100%">
+    <td><%= bixo.nome %></td>
+    <td><%= bixo.email %></td>
+    <td><%= bixo.telefone %></td>
+    <td><%= bixo.curso %></td>
+  </tr>
+<% end %>
+</table> 
 
 <%= link_to 'Editar', edit_esporte_path(@esporte) %> |
 <%= link_to 'Voltar', esportes_path %>

@@ -1,8 +1,8 @@
 class Bixo < ActiveRecord::Base
   attr_accessible :curso, :email, :nome, :telefone
 
-  has_many :vendas
-  has_many :esporte_bixos
+  has_many :vendas, :dependent => :destroy
+  has_many :esporte_bixos, :dependent => :destroy
 
   validates :nome, :presence => true
   validates :curso, :presence =>true
