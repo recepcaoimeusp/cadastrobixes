@@ -1,5 +1,13 @@
 KitbIXO2::Application.routes.draw do
   
+  #get "bixos/new"
+
+  #get "bixos/show"
+
+  #get "bixos/edit"
+
+  resources :bixos
+
   get "vendas/showBixos"
   resources :vendas
 
