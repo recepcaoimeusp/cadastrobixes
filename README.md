@@ -34,3 +34,6 @@ cada pagamento do kit.
 cada bixo as modalidades que ele está interessado. Provavelmente essas
 modalidades tem que vir de uma lista.
 
+- Criar links faltantes em algumas views. Ex: Provavelmente está faltando
+link para excluir bixos na index dos bixos
+
