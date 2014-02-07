@@ -4,17 +4,34 @@ kit_bIXO
 
 Guia superficial para instalação:
 
-- Instale ruby (versão 2 ou mais provavelmente) e rails versão 3 ou mais.
+- Instale ruby (versão 2 ou mais provavelmente, com o pacote de desenvolvimento) e rails versão 3 ou mais.
+- Instale a libsqlite3 (com o pacote de desenvolvimento também).
 
-- Na pasta do projeto, rode os comandos: (Para instalar dependências)
+- Na pasta do projeto, rode os comandos como root: (Para instalar dependências)
+```bash
 $ gem install bundler
 $ bundle install
+```
 
 - Para configurar o BD inicial:
+```bash
 $ rake db:create && rake db:migrate
+```
+
+- Na pasta /config/initializers do projeto, crie um arquivo chamado "secret_token.tb",
+  e dentro dele coloque:
+```ruby
+KitbIXO2::Application.config.secret_token = '\*\*\*'
+```
+  onde \*\*\* é a saída do comando:
+```bash
+$ rake secret.
+```
 
 - Para iniciar o servidor, rode:
+```bash
 $ rails server
+```
 
 ===========================================================
 
