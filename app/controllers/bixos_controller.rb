@@ -1,5 +1,5 @@
 class BixosController < ApplicationController
-  
+
   # GET /bixos/new
   # GET /bixos/new.json
   def new
@@ -23,6 +23,7 @@ class BixosController < ApplicationController
   end
 
   # GET /bixos/1/edit
+  # GET /bixos/1/edit.json
   def edit
     @bixo = Bixo.find(params[:id])
   end
