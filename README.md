@@ -33,6 +33,11 @@ $ rake secret
 $ rails server
 ```
 
+- Sempre que o esquema do BD mudar, rode:
+```bash
+$ rake db:schema:load
+```
+
 ===========================================================
 
 DONE:
