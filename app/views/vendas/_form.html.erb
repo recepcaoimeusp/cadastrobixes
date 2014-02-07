@@ -22,14 +22,6 @@
     <%= f.label :cor_da_mochila %><br />
     <%= f.text_field :cor_da_mochila %>
   </div>
-  <div class="field">
-    <%= f.label :valor %><br />
-    <%= f.number_field :valor %>
-  </div>
-  <div class="field">
-    <%= f.label :completo %><br />
-    <%= f.check_box :completo %>
-  </div>
   <div class="actions">
     <%= f.hidden_field :bixo_id %>
     <%= hidden_field_tag 'bixo_id', @venda.bixo.id%>

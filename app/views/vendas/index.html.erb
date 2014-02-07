@@ -59,7 +59,7 @@
     <td><%= venda.bixo.telefone %></td>
     <td><%= venda.bixo.curso %></td>
     <td>
-      <% if venda.completo==true %>Completo
+      <% if venda.completo? == true then%>Completo
     	<% else %>Parcial
     	<% end %>
     </td>

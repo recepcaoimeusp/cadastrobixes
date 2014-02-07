@@ -7,10 +7,10 @@
 
 <p>
   <b>Valor:</b>
-  <%= @venda.valor %>
+  R$ <%= @venda.valor %>
 </p>
 <b>Completo:</b>
-    <% if @venda.completo==true %>Completo
+    <% if @venda.completo? == true then%>Completo
   	<% else %> Parcial
    	<% end %>
 </p>
@@ -26,6 +26,7 @@
   <%= link_to 'Modificar', edit_pagamento_path(pagamento) %>
   <%= link_to 'Remover', pagamento, :method => :delete,
         :data => { :confirm => 'Tem certeza?' } %>
+  </br>
 <% end %>
 </br>
 </br>
