@@ -25,7 +25,7 @@ KitbIXO2::Application.config.secret_token = '\*\*\*'
 ```
   onde \*\*\* é a saída do comando:
 ```bash
-$ rake secret.
+$ rake secret
 ```
 
 - Para iniciar o servidor, rode:
