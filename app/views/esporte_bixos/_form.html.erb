@@ -1,33 +1,14 @@
-<%= form_for(@bixo) do |f| %>
-  <% if @bixo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bixo.errors.count, "error") %> O que deu caca:</h2>
+<%= form_tag('/esporte_bixos') do %>
 
-      <ul>
-      <% @bixo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :nome %><br />
-    <%= f.text_field :nome %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :telefone %><br />
-    <%= f.text_field :telefone %>
-  </div>
-  <div class="field">
-    <%= f.label :curso%><br />
-    <%= f.text_field :curso%>
-  </div>
+<% @esportes.each do |esporte| %>
+  <%= check_box_tag 'esportes_ids[]', esporte.id %>
+  <%= h esporte.modalidade -%>
+<%end%>
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= hidden_field_tag 'bixo_id', @bixo.id%>
+     <div><%= submit_tag 'Save' %></div>
   </div>
 <% end %>

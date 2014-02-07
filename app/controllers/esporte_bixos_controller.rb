@@ -4,7 +4,13 @@ class EsporteBixosController < ApplicationController
 
  def index
   	
-    
+    @todo_o_hue = EsporteBixo.all
+
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render :json => @todo_o_hue }
+    end
   end
 
 
@@ -36,17 +42,27 @@ class EsporteBixosController < ApplicationController
    # POST /esportes
   # POST /esportes.json
   def create
-    @esporte = Esporte.new(params[:esporte])
+    @esportes = params[:esportes_ids]
+    @bixo = Bixo.find(params[:bixo_id])
 
-    respond_to do |format|
-      if @esporte.save
-        format.html { redirect_to @esporte, :notice => 'esporte was successfully created.' }
-        format.json { render :json => @esporte, :status => :created, :location => @esporte }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @esporte.errors, :status => :unprocessable_entity }
-      end
+	EsporteBixo.where(:bixo_id => @bixo.id).destroy_all
+
+    @esportes.each do |esporte|
+    	@esporte_bixo = EsporteBixo.new
+    	@esporte_bixo.bixo_id = @bixo.id
+    	@esporte_bixo.esporte_id = esporte
+    	@esporte_bixo.save
     end
+
+#    respond_to do |format|
+#      if @esporte.save
+#        format.html { redirect_to @esporte, :notice => 'esporte was successfully created.' }
+#        format.json { render :json => @esporte, :status => :created, :location => @esporte }
+#      else
+#        format.html { render :action => "new" }
+#        format.json { render :json => @esporte.errors, :status => :unprocessable_entity }
+#      end
+#    end
    end
 
    # PUT /esportes/1
