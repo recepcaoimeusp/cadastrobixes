@@ -33,4 +33,12 @@ ActiveRecord::Schema.define(:version => 20140207025007) do
 
   add_index "vendas", ["bixo_id"], :name => "index_vendas_on_bixo_id"
 
+  create_table "veteranos", :force => true do |t|
+    t.string   "nome"
+    t.string   "telefone"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
 end

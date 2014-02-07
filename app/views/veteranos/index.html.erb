@@ -1,0 +1,24 @@
+<h1>Listagem de veteranos responsáveis pelas vendas</h1>
+<%= link_to 'Novo veterano responsável', new_veterano_path %> |
+<%= link_to 'Início', '/' %><br>
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Telefone</th>
+    <th></th>
+  </tr>
+<% @veteranos.each do |veterano| %>
+  <tr bgcolor=AAFFAA width="100%">
+    <td><%= veterano.nome %></td>
+    <td><%= veterano.email %></td>
+    <td><%= veterano.telefone %></td>
+    <td><%= link_to 'Editar', edit_veterano_path(:id => veterano.id) %></td>
+    <td>
+      <%= link_to 'Remover', veterano, :method => :delete,
+            :data => { :confirm => 'Tem certeza?' } %>
+    </td>
+
+  </tr>
+<% end %>
+</table>

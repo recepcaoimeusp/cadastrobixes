@@ -1,5 +1,5 @@
 KitbIXO2::Application.routes.draw do
-  
+
   #get "bixos/new"
 
   #get "bixos/show"
@@ -10,6 +10,8 @@ KitbIXO2::Application.routes.draw do
 
   get "vendas/showBixos"
   resources :vendas
+
+  resources :veteranos
 
   get "home/index"
 

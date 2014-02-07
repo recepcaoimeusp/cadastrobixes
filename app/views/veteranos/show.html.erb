@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nome:</b>
+  <%= @veterano.nome %>
+</p>
+
+<p>
+  <b>E-mail:</b>
+  <%= @veterano.email %>
+</p>
+
+<p>
+  <b>Telefone:</b>
+  <%= @veterano.telefone %>
+</p>
+
+
+
+<%= link_to 'Editar', edit_veterano_path(@veterano) %> |
+<%= link_to 'Voltar', veteranos_path %> |
+<%= link_to 'Início', '/' %>

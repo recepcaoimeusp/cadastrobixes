@@ -1,5 +1,6 @@
 <h1>Listagem de bixos</h1>
-<%= link_to 'Novo bixo', new_bixo_path %><br>
+<%= link_to 'Novo bixo', new_bixo_path %> |
+<%= link_to 'Início', '/' %><br>
 <table>
   <tr>
     <th>Nome</th>
@@ -16,6 +17,10 @@
     <td><%= bixo.curso %></td>
     <td><%= link_to 'Editar', edit_bixo_path(:id => bixo.id) %></td>
     <td><%= link_to 'Vender', new_venda_path(:bixo => bixo.id) %></td>
+    <td>
+      <%= link_to 'Remover', bixo, :method => :delete,
+            :data => { :confirm => 'Tem certeza?' } %>
+    </td>
 
   </tr>
 <% end %>
