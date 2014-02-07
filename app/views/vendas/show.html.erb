@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Nome:</b>
-  <%= @venda.nome %>
-</p>
-
-<p>
   <b>Cor da mochila:</b>
   <%= @venda.cor_da_mochila %>
 </p>
@@ -14,27 +9,15 @@
   <b>Valor:</b>
   <%= @venda.valor %>
 </p>
-
-<p>
-  <b>Email:</b>
-  <%= @venda.email %>
-</p>
-
-<p>
-  <b>Telefone:</b>
-  <%= @venda.telefone %>
-</p>
-
-<p>
-  <b>Curso turma:</b>
-  <%= @venda.curso_turma %>
-</p>
-
-<p>
-  <b>Completo:</b>
+<b>Completo:</b>
     <% if @venda.completo==true %>Completo
   	<% else %> Parcial
    	<% end %>
+</p>
+
+<p>
+  <b>Bixo:</b>
+  <%= @venda.bixo_id %>
 </p>
 
 

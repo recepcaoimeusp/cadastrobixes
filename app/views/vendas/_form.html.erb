@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nome %><br />
-    <%= f.text_field :nome %>
-  </div>
+
+  <p> Bixo: <%= @venda.bixo.nome %> </p><br>
+
+
   <div class="field">
     <%= f.label :cor_da_mochila %><br />
     <%= f.text_field :cor_da_mochila %>
@@ -24,22 +24,13 @@
     <%= f.number_field :valor %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :telefone %><br />
-    <%= f.text_field :telefone %>
-  </div>
-  <div class="field">
-    <%= f.label :curso_turma %><br />
-    <%= f.text_field :curso_turma %>
-  </div>
-  <div class="field">
     <%= f.label :completo %><br />
     <%= f.check_box :completo %>
   </div>
   <div class="actions">
+    <%= f.hidden_field :bixo_id %>
+    <%= hidden_field_tag 'bixo_id', @venda.bixo.id%>
     <%= f.submit %>
   </div>
+
 <% end %>

@@ -29,10 +29,13 @@ class VendasController < ApplicationController
     end
   end
 
-  # GET /vendas/new
-  # GET /vendas/new.json
+  # GET /vendas/1/new
+  # GET /vendas/1/new.json
   def new
     @venda = Venda.new
+
+    @venda.bixo = Bixo.find(params[:bixo])
+    @bixoId = @venda.bixo.id
 
     respond_to do |format|
       format.html # new.html.erb

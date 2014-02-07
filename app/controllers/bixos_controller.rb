@@ -14,20 +14,26 @@ class BixosController < ApplicationController
   # GET /bixos/1
   # GET /bixos/1.json
   def show
-  	@venda = Bixo.find(params[:id])
+  	@bixo = Bixo.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @venda }
+      format.json { render :json => @bixo }
     end
   end
 
   # GET /bixos/1/edit
   def edit
-    @venda = Venda.find(params[:id])
+    @bixo = Bixo.find(params[:id])
   end
 
   def index
+  	@bixos = Bixo.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @bixos }
+    end
   end
 
    # POST /bixos
