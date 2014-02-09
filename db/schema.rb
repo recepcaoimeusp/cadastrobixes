@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20140207180426) do
 
   create_table "vendas", :force => true do |t|
     t.string   "cor_da_mochila"
+    t.string   "tamanho_camisa"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "bixo_id"

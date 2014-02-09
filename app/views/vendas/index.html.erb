@@ -4,6 +4,7 @@
   <tr>
     <th>Nome</th>
     <th>Cor da mochila</th>
+    <th>Cor da mochila</th>
     <th>Valor</th>
     <th>Email</th>
     <th>Telefone</th>
@@ -50,6 +51,7 @@
         <% zero=zero+1 %>
       <% end %>
     </td>
+    <td><%= venda.tamanho_camisa %></td>
     <td><%= venda.valor %></td>
     <% if venda.valor>=80 %>
       <% t=t+1 %>

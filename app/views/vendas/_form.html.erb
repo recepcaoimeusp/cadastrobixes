@@ -22,6 +22,13 @@
     <%= f.label :cor_da_mochila %><br />
     <%= f.text_field :cor_da_mochila %>
   </div>
+   <div class="field">
+    Responsável:</br>
+    <% tamanhos = ["P", "M", "G", "GG", "XGG"] %>
+    <% tamanhos.each do |tamanho| %>
+      <%= f.radio_button :tamanho_camisa, tamanho %>
+      <%= f.label :tamanho_camisa, tamanho %><br />
+    <% end %>
   <div class="actions">
     <%= f.hidden_field :bixo_id %>
     <%= hidden_field_tag 'bixo_id', @venda.bixo.id%>

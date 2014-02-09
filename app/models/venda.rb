@@ -1,10 +1,11 @@
 class Venda < ActiveRecord::Base
-  attr_accessible :cor_da_mochila, :bixo_id
+  attr_accessible :cor_da_mochila, :bixo_id, :tamanho_camisa
 
   belongs_to :bixo
   has_many :pagamentos
 
   validates :bixo_id, :presence => true
+  validates :tamanho_camisa, :presence => true
 
   PRECO = 75
 
