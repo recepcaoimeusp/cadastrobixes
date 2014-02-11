@@ -1,7 +1,7 @@
 class PagamentosController < ApplicationController
   def new
     @pagamento = Pagamento.new
-    @veteranos = Veterano.all
+    @veteranos = Veterano.order('nome ASC').all
 
     @pagamento.venda = Venda.find(params[:venda])
 
@@ -13,7 +13,7 @@ class PagamentosController < ApplicationController
 
   def edit
     @pagamento = Pagamento.find(params[:id])
-    @veteranos = Veterano.all
+    @veteranos = Veterano.order('nome ASC').all
   end
 
   def create

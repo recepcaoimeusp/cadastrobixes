@@ -3,7 +3,7 @@
 
 <% @esportes.each do |esporte| %>
   <%= check_box_tag 'esportes_ids[]', esporte.id %>
-  <%= h esporte.modalidade -%>
+  <%= h esporte.modalidade -%> <br>
 <%end%>
 
 

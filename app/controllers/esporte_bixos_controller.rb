@@ -18,7 +18,8 @@ class EsporteBixosController < ApplicationController
   # GET /esportes/new.json
   def new
   	@bixo = Bixo.find(params[:bixo])
-  	@esportes = Esporte.all
+  	@esportes = Esporte.order('modalidade ASC').all
+
 
     respond_to do |format|
       format.html # new.html.erb
