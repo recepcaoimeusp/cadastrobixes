@@ -10,6 +10,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 <% @bixos.each do |bixo| %>
   <tr bgcolor=AAFFAA width="100%">
@@ -17,6 +18,7 @@
     <td><%= bixo.email %></td>
     <td><%= bixo.telefone %></td>
     <td><%= bixo.curso %></td>
+    <td><%= link_to 'Mostrar', bixo %></td>
     <td><%= link_to 'Editar', edit_bixo_path(:id => bixo.id) %></td>
     <td><%= link_to 'Vender', new_venda_path(:bixo => bixo.id) %></td>
     <td>

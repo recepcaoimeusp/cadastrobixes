@@ -34,6 +34,7 @@ class EsportesController < ApplicationController
   	@esporteBixos.each do |registro|
   		@bixos << Bixo.find(registro.bixo_id) 
   	end
+    @bixos = @bixos.sort_by &:curso
 
     respond_to do |format|
       format.html # show.html.erb

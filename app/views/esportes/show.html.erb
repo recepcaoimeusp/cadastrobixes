@@ -29,3 +29,9 @@
 
 <%= link_to 'Editar', edit_esporte_path(@esporte) %> |
 <%= link_to 'Voltar', esportes_path %>
+<br>
+<% @bixos.each do |bixo| %>
+  
+    <%= bixo.nome %>,<%= bixo.curso %><br>
+
+<% end %>

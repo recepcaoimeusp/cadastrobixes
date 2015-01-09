@@ -1,14 +1,12 @@
-<h1>Listagem de EsporteBixos</h1>
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Esporte</th>
-  </tr>
-<% @todo_o_hue.each do |registro| %>
-  <tr bgcolor=AAFFAA width="100%">
-  	<% @bixo = Bixo.find(registro.bixo_id) %>
-    <td><%= @bixo.nome %></td>
-    <td><%= Esporte.find(registro.esporte_id).modalidade%></td>
-  </tr>
-<% end %>
-</table>
+
+
+<% @esportes.each do |esporte| %>
+
+	==============<%= esporte.modalidade %>=========<br>
+	<% esporteBixos = EsporteBixo.find_all_by_esporte_id(esporte.id) %>
+	<% esporteBixos.each do |registro|  %>
+		<% @bixo = Bixo.find(registro.bixo_id) %>
+		 <%= @bixo.email %>; <br>
+	<%end%>
+	========================================<br><br><br>
+<%end%>

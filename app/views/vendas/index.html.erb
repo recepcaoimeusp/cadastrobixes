@@ -17,7 +17,7 @@
   <% inadimplentes='' %>
   <% x,y,t,parciais,v,b,esp,zero,o=0,0,0,0,0,0,0,0,0 %>
   <% @vendas.each do |venda| %>
-    <% if venda.valor>=80 %>
+    <% if venda.valor>=75 %>
       <tr bgcolor=AAFFAA width="100%">
     <% else %>
       <% parciais = parciais + venda.valor %>
@@ -25,7 +25,7 @@
         inadimplentes =
           inadimplentes + venda.bixo.nome + ';' +
           venda.bixo.email + ';' +
-          (80-venda.valor).to_s + ';' +
+          (75-venda.valor).to_s + ';' +
           venda.bixo.telefone + ';' +
           venda.bixo.curso + ' '
       %>
@@ -53,7 +53,7 @@
     </td>
     <td><%= venda.tamanho_camisa %></td>
     <td><%= venda.valor %></td>
-    <% if venda.valor>=80 %>
+    <% if venda.valor>=75 %>
       <% t=t+1 %>
     <% end %>
     <% x=x+venda.valor %>
@@ -86,5 +86,15 @@
   Kits zero: <%= zero %><br />
 </table>
 <br />
-<font color= FF0000><b> Lista dos inadimplentes: </b></font><%= inadimplentes %>
+
+<% @vendas.each do |venda| %>
+<%if(venda.valor < 75) then %>
+   <%=venda.bixo.nome%>,<%=venda.bixo.curso%>,<%=venda.bixo.email%>,<%=75 - venda.valor%>,<br>
+
+  <%end%>
+
+
+
+<%end%>
+
 <br />

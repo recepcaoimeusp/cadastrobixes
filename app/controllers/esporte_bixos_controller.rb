@@ -5,6 +5,7 @@ class EsporteBixosController < ApplicationController
  def index
   	
     @todo_o_hue = EsporteBixo.all
+    @esportes = Esporte.all
 
 
     respond_to do |format|

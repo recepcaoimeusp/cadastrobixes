@@ -15,6 +15,7 @@ class BixosController < ApplicationController
   # GET /bixos/1.json
   def show
   	@bixo = Bixo.find(params[:id])
+    @vendas = Venda.where(:bixo_id => params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,7 +30,7 @@ class BixosController < ApplicationController
   end
 
   def index
-  	@bixos = Bixo.all
+  	@bixos = Bixo.order('nome ASC').all
 
     respond_to do |format|
       format.html # index.html.erb
