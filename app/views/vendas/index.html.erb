@@ -15,7 +15,7 @@
     <th></th>
   </tr>
   <% inadimplentes='' %>
-  <% x,y,t,parciais,v,b,esp,zero,o=0,0,0,0,0,0,0,0,0 %>
+  <% x,y,t,parciais,v,b=0,0,0,0,0,0 %>
   <% @vendas.each do |venda| %>
     <% if venda.valor>=75 %>
       <tr bgcolor=AAFFAA width="100%">
@@ -40,15 +40,6 @@
       <% end %>
       <% if venda.cor_da_mochila=='b' || venda.cor_da_mochila=='B' %>
         <% b=b+1 %>
-      <% end %>
-      <% if venda.cor_da_mochila==' ' %>
-        <% esp=esp+1 %>
-      <% end %>
-      <% if venda.cor_da_mochila=='o' %>
-        <% o=o+1 %>
-      <% end %>
-      <% if venda.cor_da_mochila=='0' %>
-        <% zero=zero+1 %>
       <% end %>
     </td>
     <td><%= venda.tamanho_camisa %></td>
@@ -82,8 +73,6 @@
   Kits quitados: <%= t %> kits<br />
   Kits vermelhos: <%= v %><br />
   Kits brancos: <%= b %><br />
-  Kits o: <%= o %><br />
-  Kits zero: <%= zero %><br />
 </table>
 <br />
 
