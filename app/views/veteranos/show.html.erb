@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Nome:</b>
-  <%= @veterano.nome %>
-</p>
+<h1><%= @veterano.nome %></h1>
+
+<p id="notice"><%= notice %></p>
 
 <p>
   <b>E-mail:</b>
@@ -15,8 +13,7 @@
   <%= @veterano.telefone %>
 </p>
 
-
-
-<%= link_to 'Editar', edit_veterano_path(@veterano) %> |
-<%= link_to 'Voltar', veteranos_path %> |
-<%= link_to 'Início', '/' %>
+<br>
+<p>
+  <%= link_to 'Editar', edit_veterano_path(@veterano) %>
+</p>
