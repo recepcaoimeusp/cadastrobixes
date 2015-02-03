@@ -11,7 +11,7 @@
     <td><%= link_to 'Detalhes', bixo %></td>
     <td><%= link_to 'Kit-bixo', new_venda_path(:bixo => bixo.id) %></td>
     <td>
-      <%= link_to 'Remover', bixo, method: :delete,
+      <%= link_to 'Remover', destroy_bixo_path(bixo),
             :data => { :confirm => 'Tem certeza?' } %>
     </td>
 
