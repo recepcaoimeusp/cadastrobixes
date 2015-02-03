@@ -52,6 +52,7 @@ nav > ul > li > a:hover {
 
 
 section > a, section > a:visited, section > a:hover, section > a:focus {
+  display: block;
   background-color: #48b;
   font-size: 18pt;
   color: #ccc;
