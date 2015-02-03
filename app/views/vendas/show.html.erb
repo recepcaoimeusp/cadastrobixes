@@ -1,5 +1,5 @@
 
-<h1>Venda para <%= @venda.bixo.nome %></h1>
+<h1>Venda para <br><%= link_to "#{@venda.bixo.nome}", @venda.bixo %></h1>
 
 <p id="notice"><%= notice %></p>
 
@@ -14,34 +14,53 @@
 </p>
 
 <p>
-  <b>Valor:</b>
-  R$ <%= @venda.valor %>
+  <b>Valor pago:</b>
+  R$ <%= @venda.valor %> / R$ 80
 </p>
 
 <p>
-  <b>Completo:</b>
-    <% if @venda.completo? == true then%>Completo
-  	<% else %> Parcial
-   	<% end %>
+  <% if @venda.completo? == true then%>
+    <span style="color:#0d0;font-weight: bold;">Completo</span>
+	<% else %>
+    <span style="color:#d00;font-weight: bold;">Pendente</span>
+ 	<% end %>
 </p>
 
+<br>
 <p>
-  <b>Bixo:</b>
-  <%= @venda.bixo.nome%>
+  <%= link_to 'Editar', edit_venda_path(@venda) %>
+  <%= link_to 'Remover', destroy_venda_path(@venda) %>
 </p>
 
+<br>
+<br>
+<hr>
 <h2>Pagamentos</h2>
 
-<% @pagamentos.each do |pagamento| %>
-  <hr>
-  <p>
-    R$ <%= pagamento.valor %> (recebido por <b><%= pagamento.responsavel %></b>)
-    <%= link_to 'Modificar', edit_pagamento_path(pagamento) %>
-    <%= link_to 'Remover', pagamento_path(pagamento), method: :delete,
-          data: { :confirm => 'Tem certeza?' } %>
-  </p>
-<% end %>
-<hr>
+<table>
+  <tr>
+    <th>Valor</th>
+    <th>Recibido por</th>
+    <th colspan="2"></th>
+  </tr>
+  <% @pagamentos.each do |pagamento| %>
+    <tr>
+      <td>
+        R$ <%= pagamento.valor %>
+      </td>
+      <td class="nome">
+        <%= pagamento.responsavel %>
+      </td>
+      <td>
+        <%= link_to 'Editar', edit_pagamento_path(pagamento) %>
+      </td>
+      <td>
+        <%= link_to 'Remover', destroy_pagamento_path(pagamento),
+              data: { :confirm => 'Tem certeza?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
 
 <br>
 <%= link_to 'Novo pagamento', new_pagamento_path(:venda => @venda.id) %>

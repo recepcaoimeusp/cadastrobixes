@@ -14,16 +14,12 @@
     </div>
   <% end %>
 
-
-  <p> Pagamento do bixo: <%= @pagamento.venda.bixo.nome %> </p><br>
-
-
   <div class="field">
-    <%= f.label :valor %><br />
+    <strong><%= f.label :valor %></strong><br />
     <%= f.number_field :valor %>
   </div>
   <div class="field">
-    Responsável:</br>
+    <strong>Responsável</strong></br>
     <% @veteranos.each do |veterano| %>
       <%= f.radio_button :responsavel, veterano.nome %>
       <%= f.label :responsavel_veterano, veterano.nome %><br />
@@ -32,7 +28,7 @@
   <div class="actions">
     <%= f.hidden_field :venda_id %>
     <%= hidden_field_tag 'venda_id', @pagamento.venda.id%>
-    <%= f.submit %>
+    <%= f.submit "Confirmar" %>
   </div>
 
 <% end %>

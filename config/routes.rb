@@ -15,10 +15,12 @@ KitbIXO2::Application.routes.draw do
 
   get "vendas/showBixos"
   resources :vendas
+  get 'vendas/delete/:id' => 'vendas#destroy', as: :destroy_venda
 
   resources :veteranos
 
   resources :pagamentos
+  get 'pagamentos/delete/:id' => 'pagamentos#destroy', as: :destroy_pagamento
 
   get "home/index"
 

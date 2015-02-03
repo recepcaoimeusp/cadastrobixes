@@ -15,11 +15,8 @@
   <% end %>
 
 
-  <p> Bixo: <%= @venda.bixo.nome %> </p><br>
-
-
   <div class="field">
-    Cor da mochila:</br>
+    <strong>Cor da mochila</strong><br>
     <% tamanhos = ["Branca", "Vermelha"] %>
     <% tamanhos.each do |tamanho| %>
       <%= f.radio_button :cor_da_mochila, tamanho %>
@@ -27,7 +24,7 @@
     <% end %>
   </div>
    <div class="field">
-    Tamanho da camisa:</br>
+    <strong>Tamanho da camisa</strong><br>
     <% tamanhos = ["P", "M", "G", "GG", "Baby G"] %>
     <% tamanhos.each do |tamanho| %>
       <%= f.radio_button :tamanho_camisa, tamanho %>
@@ -36,7 +33,7 @@
   <div class="actions">
     <%= f.hidden_field :bixo_id %>
     <%= hidden_field_tag 'bixo_id', @venda.bixo.id%>
-    <%= f.submit %>
+    <%= f.submit "Confirmar" %>
   </div>
 
 <% end %>

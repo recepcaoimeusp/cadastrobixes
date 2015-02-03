@@ -27,77 +27,23 @@
 
 <table>
   <tr>
-    <th>Nome</th>
     <th>Cor da mochila</th>
-    <th>Cor da mochila</th>
-    <th>Valor</th>
-    <th>Email</th>
-    <th>Telefone</th>
-    <th>Curso/Turma</th>
-    <th>Completo</th>
-    <th></th>
-    <th></th>
+    <th>Tamanho camiseta</th>
+    <th>Valor pago</th>
     <th></th>
   </tr>
-  <% inadimplentes='' %>
-  <% x,y,t,parciais,v,b,esp,zero,o=0,0,0,0,0,0,0,0,0 %>
   <% @vendas.each do |venda| %>
     <% if venda.valor>=75 %>
-      <tr bgcolor=AAFFAA width="100%">
+      <tr>
     <% else %>
-      <% parciais = parciais + venda.valor %>
-      <%
-        inadimplentes =
-          inadimplentes + venda.bixo.nome + ';' +
-          venda.bixo.email + ';' +
-          (80-venda.valor).to_s + ';' +
-          venda.bixo.telefone + ';' +
-          venda.bixo.curso + ' '
-      %>
-      <tr bgcolor=FFAAAA width="100%">
+      <tr class="bad">
     <% end %>
-    <% y=y+1 %>
-    <td><%= venda.bixo.nome %></td>
     <td>
       <%= venda.cor_da_mochila %>
-      <% if venda.cor_da_mochila=='v' || venda.cor_da_mochila=='V' %>
-        <% v=v+1 %>
-      <% end %>
-      <% if venda.cor_da_mochila=='b' || venda.cor_da_mochila=='B' %>
-        <% b=b+1 %>
-      <% end %>
-      <% if venda.cor_da_mochila==' ' %>
-        <% esp=esp+1 %>
-      <% end %>
-      <% if venda.cor_da_mochila=='o' %>
-        <% o=o+1 %>
-      <% end %>
-      <% if venda.cor_da_mochila=='0' %>
-        <% zero=zero+1 %>
-      <% end %>
     </td>
     <td><%= venda.tamanho_camisa %></td>
-    <td><%= venda.valor %></td>
-    <% if venda.valor>=80 %>
-      <% t=t+1 %>
-    <% end %>
-    <% x=x+venda.valor %>
-    <td><%= venda.bixo.email %></td>
-    <td><%= venda.bixo.telefone %></td>
-    <td><%= venda.bixo.curso %></td>
-    <td>
-      <% if venda.completo? == true then%>Completo
-    	<% else %>Parcial
-    	<% end %>
-    </td>
-    <td><%= link_to 'Mostrar', venda %></td>
-    <td><%= link_to 'Editar', edit_venda_path(venda) %></td>
-    <td>
-      <%=
-        link_to 'Destruir', venda, :method => :delete,
-          :data => { :confirm => 'Se voce insistir, eu apago mesmo...' }
-      %>
-    </td>
+    <td><%= venda.valor %>/80</td>
+    <td><%= link_to 'Detalhes', venda %></td>
     </tr>
   <% end %>
 </table>
