@@ -1,31 +1,19 @@
 <h1>Listagem de bixos</h1>
-<%= link_to 'Novo bixo', new_bixo_path %>
-<%= link_to 'Início', '/' %><br>
+<%= link_to 'Cadastrar bixo', new_bixo_path %>
 <table>
   <tr>
     <th>Nome</th>
-    <th>Email</th>
-    <th>Telefone</th>
-    <th>Curso</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="3">Ações</th>
   </tr>
 <% @bixos.each do |bixo| %>
-  <tr bgcolor=AAFFAA width="100%">
-    <td><%= bixo.nome %></td>
-    <td><%= bixo.email %></td>
-    <td><%= bixo.telefone %></td>
-    <td><%= bixo.curso %></td>
-    <td><%= link_to 'Mostrar', bixo %></td>
-    <td><%= link_to 'Editar', edit_bixo_path(:id => bixo.id) %></td>
-    <td><%= link_to 'Vender', new_venda_path(:bixo => bixo.id) %></td>
+  <tr>
+    <td class="name"><%= bixo.nome %></td>
+    <td><%= link_to 'Detalhes', bixo %></td>
+    <td><%= link_to 'Kit-bixo', new_venda_path(:bixo => bixo.id) %></td>
     <td>
-      <%= link_to 'Remover', bixo, :method => :delete,
+      <%= link_to 'Remover', bixo, method: :delete,
             :data => { :confirm => 'Tem certeza?' } %>
     </td>
-    <td><%= link_to 'Atlética', new_esporte_bixo_path(:bixo => bixo.id) %></td>
 
   </tr>
 <% end %>

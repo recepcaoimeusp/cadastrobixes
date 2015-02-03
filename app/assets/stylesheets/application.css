@@ -33,7 +33,10 @@ nav > ul > li {
   float: left;
 }
 
-nav > ul > li > a, nav > ul > li > a:visited, nav > ul > li > a:hover, nav > ul > li > a:focus {
+nav > ul > li > a,
+nav > ul > li > a:visited,
+nav > ul > li > a:hover,
+nav > ul > li > a:focus {
   background-color: #bce;
   font-size: 18pt;
   color: #555;
@@ -51,34 +54,93 @@ nav > ul > li > a:hover {
 }
 
 
-section > a, section > a:visited, section > a:hover, section > a:focus {
-  display: block;
+section > a,
+section > a:visited,
+section > a:focus,
+section > p > a,
+section > p > a:visited,
+section > p > a:focus {
   background-color: #48b;
-  font-size: 18pt;
-  color: #ccc;
-  padding: 8px;
+  font-size: 14pt;
+  color: #ddd;
+  padding: 4px 6px;
   margin: 8px;
   text-decoration: none;
   text-align: center;
-  border: solid 4px #269;
   border-radius: 8px;
-  width: 180px;
+  width: 140px;
+}
+
+td > a,
+td > a:visited,
+td > a:focus {
+  background-color: #48b;
+  font-size: 14pt;
+  color: #ddd;
+  padding: 4px 6px;
+  margin: 8px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 8px;
+  width: 140px;
+}
+
+section > a:hover,
+section > p > a:hover {
+  background-color: #269;
+  color: #eee;
+}
+
+td > a:hover {
+  background-color: #269;
+  color: #eee;
 }
 
 section > h1 {
   font-size: 24pt;
-  margin: 3.5em 1em 1em 1em;
-  padding: .6em .1em;
+  margin: 3.5em 0em 1em 0em;
+  padding: .6em 1em;
 }
 
 section > h2 {
   text-decoration: none;
+  text-align: center;
 }
 
 section > form {
   width: 400px;
   margin-left: 6em;
   font-size: 18pt;
+}
+
+section > p {
+  margin: .4em 4em;
+  padding: 2px 8px;
+  font-size: 14pt;
+}
+
+table {
+  width: 700px;
+  background-color: #aaf;
+  margin: 2em auto;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+td {
+  padding: 8px 6px;
+}
+
+td.name {
+  width: 300px;
+}
+
+table > tr.bad > td {
+  background-color: #faa; 
+}
+
+p#notice {
+  padding: 0;
 }
 
 div.field > input {
@@ -91,3 +153,4 @@ div.actions > input {
   margin-top: .5em;
   font-size: 18pt;
 }
+ 

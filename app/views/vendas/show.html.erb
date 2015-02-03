@@ -1,10 +1,15 @@
+
+<h1>Venda para <%= @venda.bixo.nome %></h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Cor da mochila:</b>
   <%= @venda.cor_da_mochila %>
 </p>
-<b>Tamanho da camisa:</b>
+
+<p>
+  <b>Tamanho da camisa:</b>
   <%= @venda.tamanho_camisa %>
 </p>
 
@@ -12,7 +17,9 @@
   <b>Valor:</b>
   R$ <%= @venda.valor %>
 </p>
-<b>Completo:</b>
+
+<p>
+  <b>Completo:</b>
     <% if @venda.completo? == true then%>Completo
   	<% else %> Parcial
    	<% end %>
@@ -23,18 +30,18 @@
   <%= @venda.bixo.nome%>
 </p>
 
-<b>Pagamentos:</b></br>
-<% @pagamentos.each do |pagamento| %>
-  R$ <%= pagamento.valor %> (<b><%= pagamento.responsavel %></b>)
-  <%= link_to 'Modificar', edit_pagamento_path(pagamento) %>
-  <%= link_to 'Remover', pagamento, :method => :delete,
-        :data => { :confirm => 'Tem certeza?' } %>
-  </br>
-<% end %>
-</br>
-</br>
+<h2>Pagamentos</h2>
 
-<%= link_to 'Adicionar pagamento', new_pagamento_path(:venda => @venda.id) %>
-<%= link_to 'Editar', edit_venda_path(@venda) %> |
-<%= link_to 'Voltar', vendas_path %> |
-<%= link_to 'Início', '/' %>
+<% @pagamentos.each do |pagamento| %>
+  <hr>
+  <p>
+    R$ <%= pagamento.valor %> (recebido por <b><%= pagamento.responsavel %></b>)
+    <%= link_to 'Modificar', edit_pagamento_path(pagamento) %>
+    <%= link_to 'Remover', pagamento_path(pagamento), method: :delete,
+          data: { :confirm => 'Tem certeza?' } %>
+  </p>
+<% end %>
+<hr>
+
+<br>
+<%= link_to 'Novo pagamento', new_pagamento_path(:venda => @venda.id) %>

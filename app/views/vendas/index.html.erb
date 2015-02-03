@@ -1,5 +1,5 @@
 <h1>Listagem de vendas</h1>
-<%= link_to 'Início', '/' %></br>
+
 <table>
   <tr>
     <th>Nome</th>
@@ -18,7 +18,7 @@
   <% x,y,t,parciais,v,b=0,0,0,0,0,0 %>
   <% @vendas.each do |venda| %>
     <% if venda.valor>=75 %>
-      <tr bgcolor=AAFFAA width="100%">
+      <tr>
     <% else %>
       <% parciais = parciais + venda.valor %>
       <%
@@ -29,7 +29,7 @@
           venda.bixo.telefone + ';' +
           venda.bixo.curso + ' '
       %>
-      <tr bgcolor=FFAAAA width="100%">
+      <tr class="bad">
     <% end %>
     <% y=y+1 %>
     <td><%= venda.bixo.nome %></td>
