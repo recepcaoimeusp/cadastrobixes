@@ -142,6 +142,7 @@ table > tr.bad > td {
 
 p#notice {
   padding: 0;
+  color: #f00;
 }
 
 div.field > input {
