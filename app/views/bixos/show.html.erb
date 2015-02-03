@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Nome:</b>
-  <%= @bixo.nome %>
-</p>
+<h1><%= @bixo.nome %></h1>
+
+<p id="notice"><%= notice %></p>
 
 <p>
   <b>E-mail:</b>
@@ -15,10 +13,17 @@
   <%= @bixo.telefone %>
 </p>
 
-	<%= link_to 'Vender', new_venda_path(:bixo => @bixo.id) %><br>
-	<%= link_to 'Atlética', new_esporte_bixo_path(:bixo => @bixo.id) %>
+<br>
+<p>
+  <%= link_to 'Editar', edit_bixo_path(@bixo) %>
+  <%= link_to 'Kit-bixo', new_venda_path(:bixo => @bixo.id) %>
+  <%= link_to 'Atlética', new_esporte_bixo_path(:bixo => @bixo.id) %>
+</p>
 
-
+<br>
+<br>
+<hr>
+<h2>Kits vendidos para esse bixo</h2>
 
 <table>
   <tr>
@@ -96,9 +101,3 @@
     </tr>
   <% end %>
 </table>
-
-
-<%= link_to 'Editar', edit_bixo_path(@bixo) %> |
-<%= link_to 'Mostrar', @bixo %> |
-<%= link_to 'Voltar', bixos_path %> |
-<%= link_to 'Início', '/' %>
