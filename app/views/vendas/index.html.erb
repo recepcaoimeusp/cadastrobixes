@@ -1,17 +1,13 @@
-<h1>Listagem de vendas</h1>
+<h1>Dados gerais</h1>
+
+<h2>Vendas de kit-bixo</h2>
 
 <table>
   <tr>
     <th>Nome</th>
     <th>Cor da mochila</th>
-    <th>Cor da mochila</th>
-    <th>Valor</th>
-    <th>Email</th>
-    <th>Telefone</th>
-    <th>Curso/Turma</th>
-    <th>Completo</th>
-    <th></th>
-    <th></th>
+    <th>Tamanho camiseta</th>
+    <th>Total pago</th>
     <th></th>
   </tr>
   <% inadimplentes='' %>
@@ -32,7 +28,7 @@
       <tr class="bad">
     <% end %>
     <% y=y+1 %>
-    <td><%= venda.bixo.nome %></td>
+    <td class="name"><%= venda.bixo.nome %></td>
     <td>
       <%= venda.cor_da_mochila %>
       <% if venda.cor_da_mochila=='v' || venda.cor_da_mochila=='V' %>
@@ -43,27 +39,12 @@
       <% end %>
     </td>
     <td><%= venda.tamanho_camisa %></td>
-    <td><%= venda.valor %></td>
+    <td>R$ <%= venda.valor %></td>
     <% if venda.valor>=75 %>
       <% t=t+1 %>
     <% end %>
     <% x=x+venda.valor %>
-    <td><%= venda.bixo.email %></td>
-    <td><%= venda.bixo.telefone %></td>
-    <td><%= venda.bixo.curso %></td>
-    <td>
-      <% if venda.completo? == true then%>Completo
-    	<% else %>Parcial
-    	<% end %>
-    </td>
-    <td><%= link_to 'Mostrar', venda %></td>
-    <td><%= link_to 'Editar', edit_venda_path(venda) %></td>
-    <td>
-      <%=
-        link_to 'Destruir', venda, :method => :delete,
-          :data => { :confirm => 'Se voce insistir, eu apago mesmo...' }
-      %>
-    </td>
+    <td><%= link_to 'Detalhes', venda %></td>
     </tr>
   <% end %>
   Soma total arrecadada: R$<%= x %><br />

@@ -124,7 +124,7 @@ section > p {
 }
 
 table {
-  width: 700px;
+  width: 750px;
   background-color: #aaf;
   margin: 2em auto;
   padding: 4px;
@@ -133,6 +133,7 @@ table {
 }
 
 td {
+  min-width: 80px;
   padding: 8px 6px;
   text-align: center;
 }

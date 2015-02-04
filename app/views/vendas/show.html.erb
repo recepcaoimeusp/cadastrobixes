@@ -3,6 +3,8 @@
 
 <p id="notice"><%= notice %></p>
 
+<h2>Informações sobre a venda</h2>
+
 <p>
   <b>Cor da mochila:</b>
   <%= @venda.cor_da_mochila %>
@@ -24,6 +26,23 @@
 	<% else %>
     <span style="color:#d00;font-weight: bold;">Pendente</span>
  	<% end %>
+</p>
+
+<h2>Informações sobre e bixe</h2>
+
+<p>
+  <b>E-mail:</b>
+  <%= @venda.bixo.email %>
+</p>
+
+<p>
+  <b>Telefone:</b>
+  <%= @venda.bixo.telefone %>
+</p>
+
+<p>
+  <b>Curso:</b>
+  <%= @venda.bixo.curso %>
 </p>
 
 <br>
