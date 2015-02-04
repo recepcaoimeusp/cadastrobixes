@@ -52,3 +52,21 @@
     </tr>
   <% end %>
 </table>
+
+<br>
+<br>
+<hr>
+<h2>Modalidades em que está cadastrado</h2>
+
+<table>
+  <tr>
+    <th>Modalidade</th>
+  </tr>
+  <% @bixo.esporte_bixos.each do |entry| %>
+    <tr>
+      <td>
+        <%= entry.esporte.modalidade %>
+      </td>
+    </tr>
+  <% end %>
+</table>
