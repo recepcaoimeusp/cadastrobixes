@@ -3,7 +3,7 @@ class VendasController < ApplicationController
   # GET /vendas.json
   def index
     @vendas = Venda.all
-
+    @stats = Venda.stats
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @vendas }

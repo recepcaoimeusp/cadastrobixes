@@ -109,6 +109,7 @@ section > h1 > a {
 section > h2 {
   text-decoration: none;
   text-align: center;
+  margin-top: 2em;
 }
 
 section > form {

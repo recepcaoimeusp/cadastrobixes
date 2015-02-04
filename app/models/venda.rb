@@ -7,7 +7,7 @@ class Venda < ActiveRecord::Base
   validates :bixo_id, :presence => true
   validates :tamanho_camisa, :presence => true
 
-  PRECO = 75
+  PRECO = 80
 
   def valor
     total = 0
@@ -19,6 +19,30 @@ class Venda < ActiveRecord::Base
 
   def completo?
     return valor >= PRECO
+  end
+
+  def self.stats
+    stats = {
+      total: 0,
+      partials: 0,
+      vendas: 0,
+      quitados: 0,
+      vermelhos: 0,
+      brancos: 0
+    }
+    Venda.all.each do |venda|
+      valor = venda.valor
+      stats[:total] += valor
+      stats[:vendas] += 1
+      if valor < PRECO
+        stats[:partials] += valor
+      else
+        stats[:quitados] += 1
+      end
+      stats[:vermelhos] += 1 if venda.cor_da_mochila == "Vermelha"
+      stats[:brancos] += 1 if venda.cor_da_mochila == "Branca"
+    end
+    stats
   end
 
 end

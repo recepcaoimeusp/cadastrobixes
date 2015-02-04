@@ -1,4 +1,28 @@
-<h1>Dados gerais</h1>
+<h1>Vamos vender!</h1>
+
+<h2>Dados gerais</h2>
+
+<p>
+  <strong>Total arrecadado:</strong> R$ <%= @stats[:total] %>
+</p>
+
+<p>
+  <strong>Total de pagamentos parciais:</strong> R$ <%= @stats[:partials] %>
+</p>
+
+<p>
+  <strong>Quantidade de vendas:</strong> <%= @stats[:vendas] %>
+  (<%= @stats[:quitados] %> quitados)
+</p>
+
+<p>
+  <strong>Falta arrecadar:</strong> R$ <%= 12696 - @stats[:total] %>
+</p>
+
+<p>
+  <strong>Mochilas vendidas de cada cor:</strong>
+  <%= @stats[:vermelhos]%> vermelhas e <%= @stats[:brancos]%> brancas
+</p>
 
 <h2>Vendas de kit-bixo</h2>
 
@@ -10,50 +34,21 @@
     <th>Total pago</th>
     <th></th>
   </tr>
-  <% inadimplentes='' %>
-  <% x,y,t,parciais,v,b=0,0,0,0,0,0 %>
   <% @vendas.each do |venda| %>
-    <% if venda.valor>=75 %>
+    <% if venda.completo? %>
       <tr>
     <% else %>
-      <% parciais = parciais + venda.valor %>
-      <%
-        inadimplentes =
-          inadimplentes + venda.bixo.nome + ';' +
-          venda.bixo.email + ';' +
-          (75-venda.valor).to_s + ';' +
-          venda.bixo.telefone + ';' +
-          venda.bixo.curso + ' '
-      %>
       <tr class="bad">
     <% end %>
-    <% y=y+1 %>
     <td class="name"><%= venda.bixo.nome %></td>
     <td>
       <%= venda.cor_da_mochila %>
-      <% if venda.cor_da_mochila=='v' || venda.cor_da_mochila=='V' %>
-        <% v=v+1 %>
-      <% end %>
-      <% if venda.cor_da_mochila=='b' || venda.cor_da_mochila=='B' %>
-        <% b=b+1 %>
-      <% end %>
     </td>
     <td><%= venda.tamanho_camisa %></td>
     <td>R$ <%= venda.valor %></td>
-    <% if venda.valor>=75 %>
-      <% t=t+1 %>
-    <% end %>
-    <% x=x+venda.valor %>
     <td><%= link_to 'Detalhes', venda %></td>
     </tr>
   <% end %>
-  Soma total arrecadada: R$<%= x %><br />
-  Soma de valor dos parciais: R$<%= parciais %><br />
-  Numero de vendas: <%= y %> kits<br />
-  Falta vender: R$<%= 9343 - x %><br />
-  Kits quitados: <%= t %> kits<br />
-  Kits vermelhos: <%= v %><br />
-  Kits brancos: <%= b %><br />
 </table>
 <br />
 
