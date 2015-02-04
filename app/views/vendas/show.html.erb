@@ -28,6 +28,12 @@
  	<% end %>
 </p>
 
+<br>
+<p>
+  <%= link_to 'Editar', edit_venda_path(@venda) %>
+  <%= link_to 'Remover', destroy_venda_path(@venda) %>
+</p>
+
 <h2>Informações sobre e bixe</h2>
 
 <p>
@@ -43,12 +49,6 @@
 <p>
   <b>Curso:</b>
   <%= @venda.bixo.curso %>
-</p>
-
-<br>
-<p>
-  <%= link_to 'Editar', edit_venda_path(@venda) %>
-  <%= link_to 'Remover', destroy_venda_path(@venda) %>
 </p>
 
 <br>
