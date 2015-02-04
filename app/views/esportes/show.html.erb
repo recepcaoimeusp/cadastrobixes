@@ -1,13 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Modalidade:</b>
+<h1>
   <%= @esporte.modalidade %>
-</p>
+</h1>
 
-
-
-<h2> Bixos que fazem o esporte </h2> <br>
+<h2>Bixos cadastrados nessa modalidade</h2> <br>
 
 <table>
   <tr>
@@ -18,20 +15,11 @@
 
   </tr>
 <% @bixos.each do |bixo| %>
-  <tr bgcolor=AAFFAA width="100%">
+  <tr>
     <td><%= bixo.nome %></td>
     <td><%= bixo.email %></td>
     <td><%= bixo.telefone %></td>
     <td><%= bixo.curso %></td>
   </tr>
 <% end %>
-</table> 
-
-<%= link_to 'Editar', edit_esporte_path(@esporte) %> |
-<%= link_to 'Voltar', esportes_path %>
-<br>
-<% @bixos.each do |bixo| %>
-  
-    <%= bixo.nome %>,<%= bixo.curso %><br>
-
-<% end %>
+</table>
