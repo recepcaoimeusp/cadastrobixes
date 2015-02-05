@@ -25,6 +25,10 @@ class Venda < ActiveRecord::Base
     return valor >= PRECO
   end
 
+  def hora
+    created_at.in_time_zone("Brasilia").strftime "%H:%M - %d/%m/%y"
+  end
+
   def self.stats
     stats = {
       total: 0,

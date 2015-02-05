@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <b>Horário da venda:</b>
+  <%= @venda.hora %>
+</p>
+
+<p>
   <% if @venda.completo? == true then%>
     <span style="color:#0d0;font-weight: bold;">Completo</span>
 	<% else %>
