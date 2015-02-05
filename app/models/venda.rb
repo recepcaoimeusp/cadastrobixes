@@ -17,6 +17,10 @@ class Venda < ActiveRecord::Base
     total
   end
 
+  def divida
+    return [0, PRECO - valor].max
+  end
+
   def completo?
     return valor >= PRECO
   end
