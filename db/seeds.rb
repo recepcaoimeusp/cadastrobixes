@@ -5,3 +5,25 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+
+[
+  { modalidade: "Atletismo" },
+  { modalidade: "Basquete feminino" },
+  { modalidade: "Basquete masculino" },
+  { modalidade: "Beisebol/Softbol" },
+  { modalidade: "Futebolde campo" },
+  { modalidade: "Futsal feminino" },
+  { modalidade: "Futsal feminino" },
+  { modalidade: "Handebol feminino" },
+  { modalidade: "Handebol masculino" },
+  { modalidade: "IMEteria" },
+  { modalidade: "Judô" },
+  { modalidade: "Natação" },
+  { modalidade: "Tênis" },
+  { modalidade: "Tênis de mesa" },
+  { modalidade: "Vôlei feminino" },
+  { modalidade: "Vôlei masculino" },
+  { modalidade: "Xadrez" }
+].each do |esporte|
+  Esporte.create(esporte)
+end
