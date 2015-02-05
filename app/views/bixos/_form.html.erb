@@ -24,8 +24,15 @@
     <%= f.text_field :telefone %>
   </div>
   <div class="field">
-    <%= f.label :curso%><br />
-    <%= f.text_field :curso%>
+    <%= f.label :curso%><br/>
+    <% cursos.each do | curso | %>
+      <%= f.radio_button :curso, curso %>
+      <%= f.label curso %>
+      </br>
+    <% end %>
+    <%= f.radio_button :curso, "Outro" %>
+    <%= f.label "Outro:" %>
+    <%= f.text_field :curso_outro %>
   </div>
   <div class="actions">
     <%= f.submit "Confirmar" %>

@@ -43,6 +43,10 @@ class BixosController < ApplicationController
   def create
     @bixo = Bixo.new(params[:bixo])
 
+    if @bixo.curso == "Outro"
+      @bixo.curso = @bixo.curso_outro
+    end
+
     respond_to do |format|
       if @bixo.save
         format.html { redirect_to @bixo, :notice => 'bixo was successfully created.' }
@@ -58,6 +62,10 @@ class BixosController < ApplicationController
   # PUT /bixos/1.json
   def update
     @bixo = Bixo.find(params[:id])
+
+    if params[:bixo][:curso] == "Outro"
+      params[:bixo][:curso] = params[:bixo][:curso_outro]
+    end
 
     respond_to do |format|
       if @bixo.update_attributes(params[:bixo])
