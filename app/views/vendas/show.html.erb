@@ -60,6 +60,7 @@
   <tr>
     <th>Valor</th>
     <th>Recibido por</th>
+    <th>Quando</th>
     <th colspan="2"></th>
   </tr>
   <% @pagamentos.each do |pagamento| %>
@@ -69,6 +70,9 @@
       </td>
       <td class="nome">
         <%= pagamento.responsavel %>
+      </td>
+      <td>
+        <%= pagamento.hora %>
       </td>
       <td>
         <%= link_to 'Editar', edit_pagamento_path(pagamento) %>

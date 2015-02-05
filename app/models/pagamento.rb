@@ -8,5 +8,9 @@ class Pagamento < ActiveRecord::Base
   validates :responsavel, :presence => true
   validates :venda_id, :presence => true
 
+  def hora
+    created_at.in_time_zone("Brasilia").strftime "%d/%m/%y - %H:%M"
+  end
+
 end
 

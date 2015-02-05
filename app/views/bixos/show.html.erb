@@ -23,6 +23,8 @@
   <%= link_to 'Editar', edit_bixo_path(@bixo) %>
   <%= link_to 'Remover', destroy_bixo_path(@bixo),
             :data => { :confirm => 'Tem certeza?' } %>
+  <%= link_to 'Kit-bixo', new_venda_path(:bixo => @bixo.id) %>
+  <%= link_to 'Atlética', new_esporte_bixo_path(:bixo => @bixo.id) %>
 </p>
 
 <br>
