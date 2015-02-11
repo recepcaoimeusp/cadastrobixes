@@ -4,7 +4,10 @@ class VendasController < ApplicationController
   def index
     @vendas = Venda.all
     @stats = Venda.stats
-    @ultima = Venda.order(created_at: :cresc).last.hora
+    last = Venda.order(created_at: :cresc).last
+    if last then
+      @ultima = last.hora
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @vendas }
