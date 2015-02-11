@@ -18,6 +18,7 @@
   { modalidade: "Handebol masculino" },
   { modalidade: "IMEteria" },
   { modalidade: "Judô" },
+  { modalidade: "Rugby" },
   { modalidade: "Natação" },
   { modalidade: "Tênis" },
   { modalidade: "Tênis de mesa" },
