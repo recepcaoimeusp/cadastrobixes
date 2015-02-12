@@ -4,7 +4,7 @@ class VendasController < ApplicationController
   def index
     @vendas = Venda.all
     @stats = Venda.stats
-    last = Venda.order(created_at: :cresc).last
+    last = Venda.order(bixo_id: :cresc).last
     if last then
       @ultima = last.hora
     end
