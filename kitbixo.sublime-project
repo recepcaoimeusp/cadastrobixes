@@ -9,6 +9,9 @@
     },
     {
       "path": "db"
+    },
+    {
+      "path": "lib"
     }
   ],
   "settings":

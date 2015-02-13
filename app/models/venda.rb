@@ -8,6 +8,7 @@ class Venda < ActiveRecord::Base
   validates :tamanho_camisa, :presence => true
 
   PRECO = 80
+  CUSTO = 63.48
 
   def valor
     total = 0
@@ -29,7 +30,15 @@ class Venda < ActiveRecord::Base
     created_at.in_time_zone("Brasilia").strftime "%H:%M - %d/%m/%y"
   end
 
-  def self.stats
+  def self.preco
+    PRECO
+  end
+
+  def self.custo
+    CUSTO
+  end
+
+  def self.stats set=Venda.all
     stats = {
       total: 0,
       partials: 0,
@@ -38,7 +47,7 @@ class Venda < ActiveRecord::Base
       vermelhos: 0,
       brancos: 0
     }
-    Venda.all.each do |venda|
+    set.each do |venda|
       valor = venda.valor
       stats[:total] += valor
       stats[:vendas] += 1
