@@ -3,9 +3,6 @@ class EsportesController < ApplicationController
 
 	def index
   	@esportes = Esporte.all
-
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @esportes }
