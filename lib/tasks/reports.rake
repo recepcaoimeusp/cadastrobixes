@@ -15,7 +15,6 @@ namespace :reports do
       puts "====== Dia #{day.strftime '%d/%m/%y'} ======"
       puts "Número de kits vendidos: #{stats[:vendas]} (#{stats[:quitados]} quitados)"
       puts "Valor total arrecadado: R$ #{stats[:total]}"
-      puts "Quanto falta recebermos: R$ #{stats[:vendas]*Venda.preco - stats[:total]}"
       puts "Mochilas vermelhas: #{stats[:vermelhos]}"
       puts "Mochilas brancas: #{stats[:brancos]}"
       acc += stats[:total]
@@ -26,7 +25,6 @@ namespace :reports do
     puts "====== Total ======"
     puts "Número de kits vendidos: #{stats[:vendas]} (#{stats[:quitados]} quitados)"
     puts "Valor total arrecadado: R$ #{stats[:total]}"
-    puts "Quanto falta recebermos: R$ #{stats[:vendas]*Venda.preco - stats[:total]}"
     puts "Mochilas vermelhas: #{stats[:vermelhos]}"
     puts "Mochilas brancas: #{stats[:brancos]}"
     puts "Balanço: R$ #{stats[:total] - (200*Venda.custo).to_int}"
