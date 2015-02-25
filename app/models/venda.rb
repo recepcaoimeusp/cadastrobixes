@@ -55,15 +55,15 @@ class Venda < ActiveRecord::Base
       vermelhos: 0,
       brancos: 0
     }
+    Venda.where(created_at: interval).each do |venda|
+      stats[:vendas] += 1 
+      stats[:vermelhos] += 1 if venda.cor_da_mochila == "Vermelha"
+      stats[:brancos] += 1 if venda.cor_da_mochila == "Branca"
+    end
     Pagamento.where(created_at: interval).each do |pagamento|
       valor = pagamento.valor
       total = pagamento.venda.valor_em interval
       stats[:total] += valor
-      if interval.cover? pagamento.venda.created_at
-        stats[:vendas] += 1 
-        stats[:vermelhos] += 1 if pagamento.venda.cor_da_mochila == "Vermelha"
-        stats[:brancos] += 1 if pagamento.venda.cor_da_mochila == "Branca"
-      end
       if total < PRECO
         stats[:partials] += valor
       else
