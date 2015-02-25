@@ -30,6 +30,14 @@ class Venda < ActiveRecord::Base
     created_at.in_time_zone("Brasilia").strftime "%H:%M - %d/%m/%y"
   end
 
+  def valor_em interval
+    total = 0
+    pagamentos.where(created_at: interval).each do |pagamento|
+      total += pagamento.valor
+    end
+    total
+  end
+
   def self.preco
     PRECO
   end
@@ -38,7 +46,7 @@ class Venda < ActiveRecord::Base
     CUSTO
   end
 
-  def self.stats set=Venda.all
+  def self.stats interval=(Time.new(2015,2,11)..Time.now)
     stats = {
       total: 0,
       partials: 0,
@@ -47,17 +55,20 @@ class Venda < ActiveRecord::Base
       vermelhos: 0,
       brancos: 0
     }
-    set.each do |venda|
-      valor = venda.valor
+    Venda.where(created_at: interval).each do |venda|
+      stats[:vendas] += 1 
+      stats[:vermelhos] += 1 if venda.cor_da_mochila == "Vermelha"
+      stats[:brancos] += 1 if venda.cor_da_mochila == "Branca"
+    end
+    Pagamento.where(created_at: interval).each do |pagamento|
+      valor = pagamento.valor
+      total = pagamento.venda.valor_em interval
       stats[:total] += valor
-      stats[:vendas] += 1
-      if valor < PRECO
+      if total < PRECO
         stats[:partials] += valor
       else
         stats[:quitados] += 1
       end
-      stats[:vermelhos] += 1 if venda.cor_da_mochila == "Vermelha"
-      stats[:brancos] += 1 if venda.cor_da_mochila == "Branca"
     end
     stats
   end
