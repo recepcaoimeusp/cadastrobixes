@@ -53,13 +53,17 @@ class Venda < ActiveRecord::Base
       vendas: 0,
       quitados: 0,
       vermelhos: 0,
-      brancos: 0
+      brancos: 0,
+      camisetas: {
+        "P" => 0, "M" => 0, "G" => 0, "GG" => 0, "Baby G" => 0
+      }
     }
     check = {}
     Venda.where(created_at: interval).each do |venda|
       stats[:vendas] += 1 
       stats[:vermelhos] += 1 if venda.cor_da_mochila == "Vermelha"
       stats[:brancos] += 1 if venda.cor_da_mochila == "Branca"
+      stats[:camisetas][venda.tamanho_camisa] += 1
     end
     Pagamento.where(created_at: interval).each do |pagamento|
       valor = pagamento.valor
