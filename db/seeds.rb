@@ -24,7 +24,8 @@
   { modalidade: "Tênis de mesa" },
   { modalidade: "Vôlei feminino" },
   { modalidade: "Vôlei masculino" },
-  { modalidade: "Xadrez" }
+  { modalidade: "Xadrez" },
+  { modalidade: "Frisbee" }
 ].each do |esporte|
   Esporte.create(esporte)
 end
