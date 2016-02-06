@@ -15,6 +15,7 @@ KitbIXO2::Application.routes.draw do
 
   get "vendas/showBixos"
   resources :vendas
+  get "inadimplentes" => 'vendas#index_inadimplentes', as: :inadimplentes
   get 'vendas/delete/:id' => 'vendas#destroy', as: :destroy_venda
 
   resources :veteranos

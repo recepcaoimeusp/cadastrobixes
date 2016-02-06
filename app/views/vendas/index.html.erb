@@ -1,5 +1,7 @@
 <h1>Kits-bixo</h1>
 
+<%= link_to "Inadimplentes", inadimplentes_path %>
+
 <h2>Vendas realizadas</h2>
 
 <table>
@@ -26,29 +28,3 @@
     </tr>
   <% end %>
 </table>
-
-<br>
-<br>
-<hr>
-<h2>Inadimplentes</h2>
-
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Curso</th>
-    <th>Deve</th>
-    <th></th>
-  </tr>
-  <% @vendas.each do |venda| %>
-    <%unless venda.completo? %>
-      <tr>
-        <td><%=venda.bixo.nome%></td>
-        <td><%=venda.bixo.curso%></td>
-        <td>R$ <%=venda.divida%></td>
-        <td><%= link_to "Contato", venda.bixo %></td>
-      </tr>
-    <%end%>
-  <%end%>
-</table>
-
-<br />
