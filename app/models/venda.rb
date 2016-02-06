@@ -38,6 +38,10 @@ class Venda < ActiveRecord::Base
     total
   end
 
+  def self.inadimplentes
+    all.map { |x| x }.keep_if do |venda| venda.valor < PRECO end
+  end
+
   def self.preco
     PRECO
   end
