@@ -13,7 +13,7 @@
  */
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   background-color: #ddf;
   width: 800px;
   margin: auto;
@@ -22,6 +22,14 @@ body {
 body > h1 {
   font-size: 48pt;
   text-align: center;
+}
+
+body > h1 > a {
+  color: #48b;
+}
+
+a {
+  text-decoration: none;
 }
 
 nav > ul {
