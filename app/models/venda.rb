@@ -55,7 +55,8 @@ class Venda < ActiveRecord::Base
       vermelhos: 0,
       brancos: 0,
       camisetas: {
-        "P" => 0, "M" => 0, "G" => 0, "GG" => 0, "Baby G" => 0
+        "P" => 0, "M" => 0, "G" => 0, "GG" => 0,
+        "Baby M" => 0, "Baby G" => 0, "Baby GG" => 0
       }
     }
     check = {}

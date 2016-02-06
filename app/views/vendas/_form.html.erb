@@ -25,7 +25,7 @@
   </div>
    <div class="field">
     <strong>Tamanho da camisa</strong><br>
-    <% tamanhos = ["P", "M", "G", "GG", "Baby G"] %>
+    <% tamanhos = ["P", "M", "G", "GG", "Baby M", "Baby G", "Baby GG"] %>
     <% tamanhos.each do |tamanho| %>
       <%= f.radio_button :tamanho_camisa, tamanho %>
       <%= f.label :tamanho_camisa, tamanho %><br />
