@@ -46,7 +46,7 @@ class Venda < ActiveRecord::Base
     CUSTO
   end
 
-  def self.stats interval=(Time.new(2015,2,11)..Time.now)
+  def self.stats interval=(Time.new(2016,2,1)..Time.now)
     stats = {
       total: 0,
       partials: 0,
