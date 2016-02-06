@@ -50,6 +50,7 @@ class Venda < ActiveRecord::Base
     stats = {
       total: 0,
       partials: 0,
+      partialsvalue: 0,
       vendas: 0,
       quitados: 0,
       vermelhos: 0,
@@ -72,7 +73,8 @@ class Venda < ActiveRecord::Base
       stats[:total] += valor
       unless check[pagamento.venda_id]
         if total < PRECO
-          stats[:partials] += valor
+          stats[:partials] += 1
+          stats[:partialsvalue] += valor
         else
           stats[:quitados] += 1
         end

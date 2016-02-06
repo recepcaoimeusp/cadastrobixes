@@ -5,7 +5,9 @@
 </p>
 
 <p>
-  <strong>Total de pagamentos parciais:</strong> R$ <%= @stats[:partials] %>
+  <strong>Total de pagamentos parciais:</strong>
+  <%= @stats[:partials] %>
+  (faltam R$ <%= Venda.preco*@stats[:partials] - @stats[:partialsvalue] %>)
 </p>
 
 <p>
