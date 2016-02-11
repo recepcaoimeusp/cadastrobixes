@@ -8,7 +8,7 @@ class Venda < ActiveRecord::Base
   validates :tamanho_camisa, :presence => true
 
   PRECO = 80
-  CUSTO = 64.74
+  CUSTO = 65
 
   def valor
     total = 0
