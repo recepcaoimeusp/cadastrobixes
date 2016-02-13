@@ -3,13 +3,13 @@ namespace :reports do
   desc "Mostra relatório de vendas para os dias de matrícula. Só faz sentido se for rodado entre a matrícula e a semana de recepção"
   task :matricula => :environment do
     days = [
-      Time.new(2015, 2, 11),
-      Time.new(2015, 2, 12),
-      Time.new(2015, 2, 23),
-      Time.new(2015, 2, 24),
-      Time.new(2015, 2, 25),
-      Time.new(2015, 2, 26),
-      Time.new(2015, 2, 27),
+      Time.new(2016, 2, 11),
+      Time.new(2016, 2, 12)
+      #Time.new(2015, 2, 23),
+      #Time.new(2015, 2, 24),
+      #Time.new(2015, 2, 25),
+      #Time.new(2015, 2, 26),
+      #Time.new(2015, 2, 27),
     ]
     acc = 0
     days.each do |day|
@@ -67,11 +67,11 @@ namespace :reports do
   end
 
   desc "Mostra os telefones dos bixes em cada modalidade da atlética"
-  task :atletica_tel => :environment do
+  task :atletica => :environment do
     Esporte.all.each do |esporte|
       puts "====== #{esporte.modalidade} ======"
       esporte.esporte_bixos.each do |rel|
-        puts "#{rel.bixo.nome} : #{rel.bixo.telefone}"
+        puts "#{rel.bixo.nome} : #{rel.bixo.telefone} / #{rel.bixo.email}"
       end
     end
   end
