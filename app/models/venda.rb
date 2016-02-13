@@ -75,15 +75,15 @@ class Venda < ActiveRecord::Base
       valor = pagamento.valor
       total = pagamento.venda.valor_em interval
       stats[:total] += valor
-      unless check[pagamento.venda_id]
+      unless check[pagamento.venda_id] == true
         if total < PRECO
-          stats[:partials] += 1
           stats[:partialsvalue] += valor
         else
           stats[:quitados] += 1
         end
         check[pagamento.venda_id] = true
       end
+      stats[:partials] = stats[:vendas] - stats[:quitados]
     end
     stats
   end
