@@ -6,7 +6,7 @@ gem 'rails', '3.2.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'json'
+gem 'json', '~> 1.4'
 gem 'thin'
 gem 'therubyracer'
 
