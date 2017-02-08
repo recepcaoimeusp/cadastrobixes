@@ -42,6 +42,20 @@ namespace :reports do
     puts "Balanço: R$ #{stats[:total] - (200*Venda.custo).to_int}"
   end
 
+  desc "Lista todos os e-mails de bixes no sistema"
+  task :emails => :environment do
+    Bixo.all.each do |bixo|
+      puts bixo.email
+    end
+  end
+
+  desc "Lista todos os e-mails de bixes da pura"
+  task :emails_pura => :environment do
+    Bixo.where(curso: "Pura").each do |bixo|
+      puts bixo.email
+    end
+  end
+
   desc "Mostra inadimplentes"
   task :inadimplentes => :environment do
     Venda.all.each do |venda|
@@ -52,6 +66,15 @@ namespace :reports do
         puts "Telefone: #{venda.bixo.telefone}"
         puts "Curso: #{venda.bixo.curso}"
         puts "Valor que deve: #{Venda.preco - venda.valor}"
+      end
+    end
+  end
+
+  desc "Mostra inadimplentes em CSV"
+  task :inadimplentescsv => :environment do
+    Venda.all.each do |venda|
+      unless venda.completo?
+        puts "#{venda.bixo.nome},#{venda.bixo.email},#{venda.bixo.telefone},#{venda.bixo.curso},#{Venda.preco - venda.valor}"
       end
     end
   end
