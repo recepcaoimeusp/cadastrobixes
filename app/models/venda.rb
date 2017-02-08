@@ -8,7 +8,7 @@ class Venda < ActiveRecord::Base
   validates :tamanho_camisa, :presence => true
 
   PRECO = 80
-  CUSTO = 63.48
+  CUSTO = 65
 
   def valor
     total = 0
@@ -38,6 +38,10 @@ class Venda < ActiveRecord::Base
     total
   end
 
+  def self.inadimplentes
+    all.map { |x| x }.keep_if do |venda| venda.valor < PRECO end
+  end
+
   def self.preco
     PRECO
   end
@@ -46,16 +50,18 @@ class Venda < ActiveRecord::Base
     CUSTO
   end
 
-  def self.stats interval=(Time.new(2015,2,11)..Time.now)
+  def self.stats interval=(Time.new(2016,2,1)..Time.now)
     stats = {
       total: 0,
       partials: 0,
+      partialsvalue: 0,
       vendas: 0,
       quitados: 0,
       vermelhos: 0,
       brancos: 0,
       camisetas: {
-        "P" => 0, "M" => 0, "G" => 0, "GG" => 0, "Baby G" => 0
+        "P" => 0, "M" => 0, "G" => 0, "GG" => 0,
+        "Baby M" => 0, "Baby G" => 0, "Baby GG" => 0
       }
     }
     check = {}
@@ -69,14 +75,15 @@ class Venda < ActiveRecord::Base
       valor = pagamento.valor
       total = pagamento.venda.valor_em interval
       stats[:total] += valor
-      unless check[pagamento.venda_id]
+      unless check[pagamento.venda_id] == true
         if total < PRECO
-          stats[:partials] += valor
+          stats[:partialsvalue] += valor
         else
           stats[:quitados] += 1
         end
         check[pagamento.venda_id] = true
       end
+      stats[:partials] = stats[:vendas] - stats[:quitados]
     end
     stats
   end

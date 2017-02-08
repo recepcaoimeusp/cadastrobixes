@@ -15,6 +15,7 @@ KitbIXO2::Application.routes.draw do
 
   get "vendas/showBixos"
   resources :vendas
+  get "inadimplentes" => 'vendas#index_inadimplentes', as: :inadimplentes
   get 'vendas/delete/:id' => 'vendas#destroy', as: :destroy_venda
 
   resources :veteranos
@@ -74,7 +75,7 @@ KitbIXO2::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'vendas#index'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

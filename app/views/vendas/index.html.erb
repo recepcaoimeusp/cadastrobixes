@@ -1,36 +1,8 @@
-<h1>Dados gerais</h1>
+<h1>Kits-bixo</h1>
 
-<p>
-  <strong>Total arrecadado:</strong> R$ <%= @stats[:total] %>
-</p>
+<%= link_to "Inadimplentes", inadimplentes_path %>
 
-<p>
-  <strong>Total de pagamentos parciais:</strong> R$ <%= @stats[:partials] %>
-</p>
-
-<p>
-  <strong>Quantidade de vendas:</strong> <%= @stats[:vendas] %>
-  (<%= @stats[:quitados] %> quitados)
-</p>
-
-<p>
-  <strong>Falta arrecadar:</strong> R$ <%= 12696 - @stats[:total] %>
-</p>
-
-<p>
-  <strong>Mochilas vendidas de cada cor:</strong>
-  <%= @stats[:vermelhos]%> vermelhas e <%= @stats[:brancos]%> brancas
-</p>
-
-<p>
-  <strong>Horário da última venda:</strong>
-  <%= @ultima %>
-</p>
-
-<br>
-<br>
-<hr>
-<h2>Vendas de kit-bixo</h2>
+<h2>Vendas realizadas</h2>
 
 <table>
   <tr>
@@ -56,29 +28,3 @@
     </tr>
   <% end %>
 </table>
-
-<br>
-<br>
-<hr>
-<h2>Inadimplentes</h2>
-
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Curso</th>
-    <th>Deve</th>
-    <th></th>
-  </tr>
-  <% @vendas.each do |venda| %>
-    <%unless venda.completo? %>
-      <tr>
-        <td><%=venda.bixo.nome%></td>
-        <td><%=venda.bixo.curso%></td>
-        <td>R$ <%=venda.divida%></td>
-        <td><%= link_to "Contato", venda.bixo %></td>
-      </tr>
-    <%end%>
-  <%end%>
-</table>
-
-<br />

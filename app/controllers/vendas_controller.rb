@@ -3,14 +3,19 @@ class VendasController < ApplicationController
   # GET /vendas.json
   def index
     @vendas = Venda.all
-    @stats = Venda.stats
-    last = Venda.order(bixo_id: :asc).last
-    if last then
-      @ultima = last.hora
-    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @vendas }
+    end
+  end
+
+  # GET /inadimplentes
+  # GET /inadimplentes.json
+  def index_inadimplentes
+    @inadimplentes = Venda.inadimplentes
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @inadimplentes }
     end
   end
 

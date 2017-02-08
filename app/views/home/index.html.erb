@@ -1,6 +1,34 @@
 
 <h1>Página principal</h1>
 
+<h2>Estatísticas de vendas</h2>
 
-Ooooooi gente!
+<p>
+  <strong>Total arrecadado:</strong> R$ <%= @stats[:total] %>
+</p>
+
+<p>
+  <strong>Total de pagamentos parciais:</strong>
+  <%= @stats[:partials] %>
+  (faltam R$ <%= Venda.preco*@stats[:partials] - @stats[:partialsvalue] %>)
+</p>
+
+<p>
+  <strong>Quantidade de vendas:</strong> <%= @stats[:vendas] %>
+  (<%= @stats[:quitados] %> quitados)
+</p>
+
+<p>
+  <strong>Falta arrecadar:</strong> R$ <%= 11000 - @stats[:total] %>
+</p>
+
+<p>
+  <strong>Mochilas vendidas de cada cor:</strong>
+  <%= @stats[:vermelhos]%> vermelhas e <%= @stats[:brancos]%> brancas
+</p>
+
+<p>
+  <strong>Horário da última venda:</strong>
+  <%= @ultima %>
+</p>
 

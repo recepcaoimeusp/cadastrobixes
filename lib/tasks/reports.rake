@@ -3,13 +3,13 @@ namespace :reports do
   desc "Mostra relatório de vendas para os dias de matrícula. Só faz sentido se for rodado entre a matrícula e a semana de recepção"
   task :matricula => :environment do
     days = [
-      Time.new(2015, 2, 11),
-      Time.new(2015, 2, 12),
-      Time.new(2015, 2, 23),
-      Time.new(2015, 2, 24),
-      Time.new(2015, 2, 25),
-      Time.new(2015, 2, 26),
-      Time.new(2015, 2, 27),
+      Time.new(2016, 2, 11),
+      Time.new(2016, 2, 12)
+      #Time.new(2015, 2, 23),
+      #Time.new(2015, 2, 24),
+      #Time.new(2015, 2, 25),
+      #Time.new(2015, 2, 26),
+      #Time.new(2015, 2, 27),
     ]
     acc = 0
     days.each do |day|
@@ -42,6 +42,20 @@ namespace :reports do
     puts "Balanço: R$ #{stats[:total] - (200*Venda.custo).to_int}"
   end
 
+  desc "Lista todos os e-mails de bixes no sistema"
+  task :emails => :environment do
+    Bixo.all.each do |bixo|
+      puts bixo.email
+    end
+  end
+
+  desc "Lista todos os e-mails de bixes da pura"
+  task :emails_pura => :environment do
+    Bixo.where(curso: "Pura").each do |bixo|
+      puts bixo.email
+    end
+  end
+
   desc "Mostra inadimplentes"
   task :inadimplentes => :environment do
     Venda.all.each do |venda|
@@ -52,6 +66,15 @@ namespace :reports do
         puts "Telefone: #{venda.bixo.telefone}"
         puts "Curso: #{venda.bixo.curso}"
         puts "Valor que deve: #{Venda.preco - venda.valor}"
+      end
+    end
+  end
+
+  desc "Mostra inadimplentes em CSV"
+  task :inadimplentescsv => :environment do
+    Venda.all.each do |venda|
+      unless venda.completo?
+        puts "#{venda.bixo.nome},#{venda.bixo.email},#{venda.bixo.telefone},#{venda.bixo.curso},#{Venda.preco - venda.valor}"
       end
     end
   end
@@ -67,11 +90,11 @@ namespace :reports do
   end
 
   desc "Mostra os telefones dos bixes em cada modalidade da atlética"
-  task :atletica_tel => :environment do
+  task :atletica => :environment do
     Esporte.all.each do |esporte|
       puts "====== #{esporte.modalidade} ======"
       esporte.esporte_bixos.each do |rel|
-        puts "#{rel.bixo.nome} : #{rel.bixo.telefone}"
+        puts "#{rel.bixo.nome} : #{rel.bixo.telefone} / #{rel.bixo.email}"
       end
     end
   end
