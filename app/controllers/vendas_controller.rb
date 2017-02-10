@@ -63,6 +63,7 @@ class VendasController < ApplicationController
   # POST /vendas.json
   def create
     @venda = Venda.new(params[:venda])
+    @venda.cor_da_mochila = "Vermelha"
 
     respond_to do |format|
       if @venda.save
