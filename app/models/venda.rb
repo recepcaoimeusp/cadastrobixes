@@ -7,7 +7,7 @@ class Venda < ActiveRecord::Base
   validates :bixo_id, :presence => true
   validates :tamanho_camisa, :presence => true
 
-  PRECO = 80
+  PRECO = 90
   CUSTO = 65
 
   def valor
@@ -66,7 +66,7 @@ class Venda < ActiveRecord::Base
     }
     check = {}
     Venda.where(created_at: interval).each do |venda|
-      stats[:vendas] += 1 
+      stats[:vendas] += 1
       stats[:vermelhos] += 1 if venda.cor_da_mochila == "Vermelha"
       stats[:brancos] += 1 if venda.cor_da_mochila == "Branca"
       stats[:camisetas][venda.tamanho_camisa] += 1
