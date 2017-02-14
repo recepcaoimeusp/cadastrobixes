@@ -3,8 +3,8 @@ namespace :reports do
   desc "Mostra relatório de vendas para os dias de matrícula. Só faz sentido se for rodado entre a matrícula e a semana de recepção"
   task :matricula => :environment do
     days = [
-      Time.new(2016, 2, 11),
-      Time.new(2016, 2, 12)
+      Time.new(2017, 2, 13),
+      Time.new(2017, 2, 14)
       #Time.new(2015, 2, 23),
       #Time.new(2015, 2, 24),
       #Time.new(2015, 2, 25),
