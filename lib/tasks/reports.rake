@@ -90,11 +90,21 @@ namespace :reports do
   end
 
   desc "Mostra os telefones dos bixes em cada modalidade da atlética"
+  task :atletica_tel => :environment do
+    Esporte.all.each do |esporte|
+      puts "====== #{esporte.modalidade} ======"
+      esporte.esporte_bixos.each do |rel|
+        puts "#{rel.bixo.telefone}"
+      end
+    end
+  end
+
+  desc "Mostra os nomes e telefones dos bixes em cada modalidade da atlética"
   task :atletica => :environment do
     Esporte.all.each do |esporte|
       puts "====== #{esporte.modalidade} ======"
       esporte.esporte_bixos.each do |rel|
-        puts "#{rel.bixo.nome} : #{rel.bixo.telefone} / #{rel.bixo.email}"
+        puts "#{rel.bixo.nome} : #{rel.bixo.telefone}"
       end
     end
   end
