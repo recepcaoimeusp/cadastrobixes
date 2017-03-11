@@ -10,22 +10,23 @@
   { modalidade: "Atletismo" },
   { modalidade: "Basquete feminino" },
   { modalidade: "Basquete masculino" },
+  { modalidade: "Bridge/Cartas" },
   { modalidade: "Beisebol/Softbol" },
   { modalidade: "Futebol de campo" },
+  { modalidade: "E-sports" },
   { modalidade: "Futsal masculino" },
   { modalidade: "Futsal feminino" },
   { modalidade: "Handebol feminino" },
   { modalidade: "Handebol masculino" },
-  { modalidade: "IMEteria" },
-  { modalidade: "Judô" },
-  { modalidade: "Rugby" },
   { modalidade: "Natação" },
+  { modalidade: "Rugby" },
+  { modalidade: "Saltos ornamentais" },
   { modalidade: "Tênis" },
   { modalidade: "Tênis de mesa" },
+  { modalidade: "Ultimate" },
   { modalidade: "Vôlei feminino" },
   { modalidade: "Vôlei masculino" },
-  { modalidade: "Xadrez" },
-  { modalidade: "Frisbee" }
+  { modalidade: "Xadrez" }
 ].each do |esporte|
   Esporte.create(esporte)
 end
