@@ -1,24 +1,5 @@
+[![CircleCI](https://circleci.com/gh/eozaki/kitbixo/tree/master.svg?style=svg)](https://circleci.com/gh/eozaki/kitbixo/tree/master)
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## About the project intentions
+This is a backyard project to assist our Institute's Students Union and Athetlics Association to register the fishmen/women.
+Feel free to copy, fork, distribute and all that, but make sure to mention us if you do, ok? Thanks.
