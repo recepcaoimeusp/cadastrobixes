@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post '/admin/limpar_mochilas' => 'application#limpa_mochilas', as: :limpa_mochilas
   post '/admin/arruma_canecas' => 'application#arruma_canecas', as: :arruma_canecas
 
-  resources :bixos
+  resources :bixos, except: [:show, :edit]
   resources :veteranos, except: [:show, :new]
   resources :modalidades
   resources :vendas, except: [:show, :new, :create]
