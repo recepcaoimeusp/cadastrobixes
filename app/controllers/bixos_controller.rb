@@ -56,7 +56,7 @@ class BixosController < ApplicationController
 
     respond_to do |format|
       if @bixo.save
-        format.html { redirect_to @bixo, notice: 'bIXO criado com sucesso!' }
+        format.html { redirect_to @bixo, notice: 'bixe criado com sucesso!' }
         format.json { render :show, status: :created, location: @bixo }
       else
         format.html { flash[:error] = 'Deu caca em alguma coisa'; render :new }
@@ -70,7 +70,7 @@ class BixosController < ApplicationController
   def update
     respond_to do |format|
       if @bixo.update(bixo_params)
-        format.html { redirect_to @bixo, notice: 'bIXO atualizado com sucesso' }
+        format.html { redirect_to @bixo, notice: 'bixe atualizado com sucesso' }
         format.json { render :show, status: :ok, location: @bixo }
       else
         format.html { render :edit }
@@ -84,7 +84,7 @@ class BixosController < ApplicationController
   def destroy
     @bixo.destroy
     respond_to do |format|
-      format.html { redirect_to bixos_url, notice: 'bIXO apagado com sucesso' }
+      format.html { redirect_to bixos_url, notice: 'bixe apagado com sucesso' }
       format.json { head :no_content }
     end
   end
