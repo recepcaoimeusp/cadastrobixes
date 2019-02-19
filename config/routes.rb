@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :bixos, only: [] do
     collection do
       resources :confirmations, only: %i(index)
+      get :emails
     end
 
     member do

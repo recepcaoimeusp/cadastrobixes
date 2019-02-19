@@ -2,10 +2,18 @@ class BixosController < ApplicationController
   before_action :set_bixo, only: [:show, :edit, :update, :destroy, :modalidades,
                                   :modify_modalidades, :nova_venda]
 
+  http_basic_authenticate_with name: "comissao", password: "bixoamigonaocomida", only: [:emails]
+
   # GET /bixos
   # GET /bixos.json
   def index
     @bixos = Bixo.all
+  end
+
+  # GET /bixos/emails
+  # GET /bixos/emails.json
+  def emails
+    @emails = Bixo.all.map(&:email).uniq
   end
 
   # GET /bixos/1
