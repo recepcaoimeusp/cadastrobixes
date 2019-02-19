@@ -18,7 +18,9 @@ class Bixo < ApplicationRecord
   end
 
   def self.confirmed
-    all.select { |b| b.confirmed? }
+    all
+      .select { |b| b.confirmed? }
+      .sort_by { |b| [b.team_color] }
   end
 
   def self.non_confirmed
