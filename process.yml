@@ -1,0 +1,185 @@
+# Orb 'circleci/ruby@1.0' resolved to 'circleci/ruby@1.0.7'
+version: 2
+jobs:
+  build:
+    docker:
+    - image: cimg/ruby:2.6-node
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - gems-v1-{{ checksum "./Gemfile.lock"  }}-{{ .Branch }}
+        - gems-v1-{{ checksum "./Gemfile.lock"  }}
+    - run:
+        command: |
+          if test -f "Gemfile.lock"; then
+            APP_BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")
+            if [ -z "$APP_BUNDLER_VERSION" ]; then
+              echo "Could not find bundler version from Gemfile.lock. Please use bundler-version parameter"
+            else
+              echo "Gemfile.lock is bundled with bundler version $APP_BUNDLER_VERSION"
+            fi
+          fi
+
+          if ! [ -z  ]; then
+            echo "Found bundler-version parameter to override"
+            APP_BUNDLER_VERSION=
+          fi
+
+          if ! echo $(bundle version)  | grep -q $APP_BUNDLER_VERSION; then
+            echo "Installing bundler $APP_BUNDLER_VERSION"
+            gem install bundler:$APP_BUNDLER_VERSION
+          else
+            echo "bundler $APP_BUNDLER_VERSION is already installed."
+          fi
+
+          if "./vendor/bundle" == "./vendor/bundle"; then
+            bundle check --path ./vendor/bundle || bundle install --deployment
+          else
+            bundle check --path ./vendor/bundle || bundle install --path=./vendor/bundle
+          fi
+        name: 'Bundle Install '
+    - save_cache:
+        key: gems-v1-{{ checksum "./Gemfile.lock"  }}-{{ .Branch }}
+        paths:
+        - ./vendor/bundle
+  test:
+    parallelism: 3
+    docker:
+    - image: cimg/ruby:2.6-node
+    - image: circleci/postgres:9.6.2-alpine
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: kitbixo_test
+        POSTGRES_PASSWORD: postgres
+    environment:
+    - BUNDLE_JOBS: '3'
+    - BUNDLE_RETRY: '3'
+    - PGHOST: 127.0.0.1
+    - PGUSER: postgres
+    - PGPASSWORD: postgres
+    - RAILS_ENV: test
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - gems-v1-{{ checksum "./Gemfile.lock"  }}-{{ .Branch }}
+        - gems-v1-{{ checksum "./Gemfile.lock"  }}
+    - run:
+        command: |
+          if test -f "Gemfile.lock"; then
+            APP_BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")
+            if [ -z "$APP_BUNDLER_VERSION" ]; then
+              echo "Could not find bundler version from Gemfile.lock. Please use bundler-version parameter"
+            else
+              echo "Gemfile.lock is bundled with bundler version $APP_BUNDLER_VERSION"
+            fi
+          fi
+
+          if ! [ -z  ]; then
+            echo "Found bundler-version parameter to override"
+            APP_BUNDLER_VERSION=
+          fi
+
+          if ! echo $(bundle version)  | grep -q $APP_BUNDLER_VERSION; then
+            echo "Installing bundler $APP_BUNDLER_VERSION"
+            gem install bundler:$APP_BUNDLER_VERSION
+          else
+            echo "bundler $APP_BUNDLER_VERSION is already installed."
+          fi
+
+          if "./vendor/bundle" == "./vendor/bundle"; then
+            bundle check --path ./vendor/bundle || bundle install --deployment
+          else
+            bundle check --path ./vendor/bundle || bundle install --path=./vendor/bundle
+          fi
+        name: 'Bundle Install '
+    - save_cache:
+        key: gems-v1-{{ checksum "./Gemfile.lock"  }}-{{ .Branch }}
+        paths:
+        - ./vendor/bundle
+    - run:
+        name: Wait for DB
+        command: dockerize -wait tcp://localhost:5432 -timeout 1m
+    - run:
+        name: Database setup
+        command: bundle exec rails db:schema:load --trace
+    - run:
+        command: |
+          mkdir -p /tmp/test-results/rspec
+          TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+          bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec/results.xml --format progress
+    - store_test_results:
+        path: /tmp/test-results/rspec
+    - store_artifacts:
+        destination: test-results
+        path: /tmp/test-results/rspec
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+    - build
+    - test:
+        requires:
+        - build
+
+# Original config.yml file:
+# version: 2.1 # Use 2.1 to enable using orbs and other features.
+# 
+# # Declare the orbs that we'll use in our config.
+# # read more about orbs: https://circleci.com/docs/2.0/using-orbs/
+# orbs:
+#   ruby: circleci/ruby@1.0 
+# 
+# jobs:
+#   build: # our first job, named \"build\"
+#     docker:
+#       - image: cimg/ruby:2.6-node # use a tailored CircleCI docker image.
+#     steps:
+#       - checkout # pull down our git code.
+#       - ruby/install-deps # use the ruby orb to install dependencies
+#          
+#   test:  # our next job, called \"test\"
+#     # we run \"parallel job containers\" to enable speeding up our tests;
+#     # this splits our tests across multiple containers.
+#     parallelism: 3 
+#     # here we set TWO docker images.
+#     docker:
+#       - image: cimg/ruby:2.6-node # this is our primary docker image, where step commands run.
+#       - image: circleci/postgres:9.6.2-alpine
+#         environment: # add POSTGRES environment variables.
+#           POSTGRES_USER: postgres
+#           POSTGRES_DB: kitbixo_test
+#           POSTGRES_PASSWORD: \"postgres\"
+#     # environment variables specific to Ruby/Rails, applied to the primary container.
+#     environment:
+#       BUNDLE_JOBS: \"3\"
+#       BUNDLE_RETRY: \"3\"
+#       PGHOST: 127.0.0.1
+#       PGUSER: postgres
+#       PGPASSWORD: \"postgres\"
+#       RAILS_ENV: test
+#     # A series of steps to run, some are similar to those in \"build\".
+#     steps:
+#       - checkout 
+#       - ruby/install-deps 
+#       # Here we make sure that the secondary container boots 
+#       # up before we run operations on the database.
+#       - run:
+#           name: Wait for DB
+#           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+#       - run:
+#           name: Database setup
+#           command: bundle exec rails db:schema:load --trace
+#       # Run rspec in parallel
+#       - ruby/rspec-test
+# 
+# # We use workflows to orchestrate the jobs that we declared above.
+# workflows:
+#   version: 2
+#   build_and_test:     # The name of our workflow is \"build_and_test\"
+#     jobs:             # The list of jobs we run as part of this workflow.
+#       - build         # Run build first.
+#       - test:         # Then run test,
+#           requires:   # Test requires that build passes for it to run.
+#             - build   # Finally, run the build job.
