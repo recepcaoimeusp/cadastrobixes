@@ -1,0 +1,2 @@
+module BixesHelper
+end

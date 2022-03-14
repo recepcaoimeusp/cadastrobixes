@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end
@@ -14,16 +13,15 @@ module ApplicationHelper
     nil
   end
 
-  def bixos_index?
-    params[:controller] == "bixos" and params[:action] == "index"
+  def bixes_index?
+    params[:controller] == "bixes" and params[:action] == "index"
   end
 
-  def confirmations_index?
-    params[:controller] == "confirmations" and params[:action] == "index"
+  def confirmacoes_index?
+    params[:controller] == "confirmacoes" and params[:action] == "index"
   end
 
   def modalidades_index?
     params[:controller] == "modalidades" and params[:action] == "index"
   end
-
 end

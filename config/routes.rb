@@ -1,30 +1,21 @@
 Rails.application.routes.draw do
-  root to: 'bixos#index'
-
-  resources :bixos, only: [] do
+  root to: 'bixes#index'
+  resources :bixes, only: [] do
     collection do
-      resources :confirmations, only: %i(index)
+      resources :confirmacoes, only: %i(index)
       get :emails
     end
 
     member do
-      resources :confirmations, only: %i(create)
+      resources :confirmacoes, only: %i(create)
     end
   end
 
-  get '/bixos/contatos' => 'bixos#contatos', as: :contatos
-  get '/bixos/:id/modalidades' => 'bixos#modalidades', as: :edit_bixo_modalidades
-  post '/bixos/:id/modalidades' => 'bixos#modify_modalidades', as: :modify_bixo_modalidades
+  get '/bixes/contatos' => 'bixes#contatos', as: :contatos
+  get '/bixes/:id/modalidades' => 'bixes#modalidades', as: :edit_bixe_modalidades
+  post '/bixes/:id/modalidades' => 'bixes#modify_modalidades', as: :modify_bixe_modalidades
 
   get '/modalidades/contatos' => 'modalidades#contatos', as: :contato_modalidades
-
-  get '/admin' => 'application#admin', as: :admin
-  post '/admin/limpar_mochilas' => 'application#limpa_mochilas', as: :limpa_mochilas
-  post '/admin/arruma_canecas' => 'application#arruma_canecas', as: :arruma_canecas
-
-  resources :bixos, except: [:edit]
-  resources :veteranos, except: [:show, :new]
+  resources :bixes, except: [:edit]
   resources :modalidades
-  resources :vendas, except: [:show, :new, :create]
-  resources :pagamentos, except: [:show, :index, :new, :create]
 end

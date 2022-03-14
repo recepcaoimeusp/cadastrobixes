@@ -1,0 +1,26 @@
+<div class="col-md-6">
+  <h1>Bixes não confirmados</h1>
+
+  <div class="grid">
+    <% @non_confirmed.each_with_index do |b, i| %>
+      <div class="row list-item-<%= i % 2 %>">
+        <h4>
+          <%= button_to b.nome, "/bixes/#{b.id}/confirmacoes", method: :post %>
+        </h4>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="col-md-6">
+  <h1>Bixos confirmados</h1>
+
+  <div class="grid">
+    <% @confirmed.each_with_index do |b, i| %>
+      <div class="row team-<%= b.team_color %>">
+        <h4>
+          <%= link_to b.nome, bixe_path(b.id) %>
+        </h4>
+      </div>
+    <% end %>
+  </div>
+</div>
