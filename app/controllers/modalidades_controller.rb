@@ -1,6 +1,6 @@
 class ModalidadesController < ApplicationController
-  http_basic_authenticate_with name: "comissao", password: "bixoamigonaocomida"
   before_action :set_modalidade, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: ENV['ADMIN_USER'], password: ENV['ADMIN_PASSWORD']
 
   # GET /modalidades
   # GET /modalidades.json

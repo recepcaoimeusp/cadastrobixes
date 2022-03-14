@@ -1,0 +1,45 @@
+<%= form_with(model: bixe, local: true) do |form| %>
+  <div class="row">
+    <div class="col-md-3 col-xs-12">
+      <div class="field">
+        <%= form.label "Nome: " %>
+        <%= form.text_field :nome, id: :bixe_nome, autofocus: true %>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-xs-12">
+      <div class="field">
+        <%= form.label "Email: " %>
+        <%= form.text_field :email, id: :bixe_email %>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-xs-12">
+      <div class="field">
+        <%= form.label "Telefone: " %>
+        <%= form.text_field :telefone, id: :bixe_telefone %>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-xs-9">
+      <div class="field">
+        <%= form.label "Curso: " %><br>
+        <%= form.collection_select :curso, Bixe.cursos, :last, :first %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-xs-6">
+      <div class="actions">
+        <%= link_to 'Voltar à lista', bixes_path, class: 'btn btn-danger btn-lg btn-wide' %>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-md-offset-6 col-xs-6">
+      <div class="actions">
+        <%= form.submit (form.object.new_record? ? 'Cadastrar' : 'Atualizar'), class: 'btn btn-success btn-lg' %>
+      </div>
+    </div>
+  </div>
+<% end %>

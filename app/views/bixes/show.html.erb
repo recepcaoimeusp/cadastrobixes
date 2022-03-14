@@ -1,0 +1,56 @@
+<h1><%= @bixe.nome %></h1>
+
+<div class="row">
+  <div class="col-md-4 col-xs-12">
+    <h2>Dados pessoais</h2>
+
+    <div class="row">
+      <div class="col-md-12 col-xs-6">
+        <h4>Nome</h4>
+        <p>
+          <%= @bixe.nome %>
+        </p>
+      </div>
+
+      <div class="col-md-12 col-xs-6">
+        <h4>E-mail</h4>
+        <p>
+          <%= @bixe.email %>
+        </p>
+      </div>
+
+      <div class="col-md-12 col-xs-6">
+        <h4>Telefone</h4>
+        <p>
+          <%= @bixe.telefone %>
+        </p>
+      </div>
+
+      <div class="col-md-12 col-xs-6">
+        <h4>Curso</h4>
+        <p>
+          <%= @bixe.curso %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-xs-12">
+    <h2>Modalidades</h2>
+    <% if @bixe.modalidades.empty? %>
+      <p><em>Nenhuma</em></p>
+    <% else %>
+      <% @bixe.modalidades.each do |mod| %>
+        <p>
+          <%= mod.nome %>
+        </p>
+      <% end %>
+    <% end %>
+    <div class="actions">
+      <%= link_to 'Mudar modalidades', edit_bixe_modalidades_path(@bixe), class: 'btn btn-success btn-lg' %>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <%= link_to 'Voltar à lista', bixes_path, class: 'btn btn-danger btn-lg' %>
+</div>

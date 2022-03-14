@@ -1,4 +1,3 @@
-
 <h1>Contatos por modalidade</h1>
 
 <h2>E-mails</h2>
@@ -6,10 +5,9 @@
 <pre>
 <% @modalidades.each do |m| %>
 # <%= m.nome %>
-<% m.bixos.each do |b| %>
+<% m.bixes.each do |b| %>
 <%= b.email %>
 <% end %>
-
 <% end %>
 </pre>
 
@@ -18,10 +16,8 @@
 <pre>
 <% @modalidades.each do |m| %>
 # <%= m.nome %>
-<% m.bixos.each do |b| %>
+<% m.bixes.each do |b| %>
 <%= b.telefone %> <%= b.nome %>
 <% end %>
-
 <% end %>
 </pre>
-

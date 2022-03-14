@@ -2,41 +2,41 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190214193750) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_03_14_002825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bixos", force: :cascade do |t|
+  create_table "bixes", force: :cascade do |t|
     t.string "nome"
     t.string "email"
     t.string "telefone"
     t.integer "curso"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "tutorship", default: false
   end
 
-  create_table "bixos_modalidades", id: false, force: :cascade do |t|
-    t.bigint "bixo_id"
-    t.bigint "modalidade_id"
-    t.index ["bixo_id"], name: "index_bixos_modalidades_on_bixo_id"
-    t.index ["modalidade_id"], name: "index_bixos_modalidades_on_modalidade_id"
-  end
-
-  create_table "confirmations", force: :cascade do |t|
-    t.bigint "bixo_id"
+  create_table "bixes_modalidades", force: :cascade do |t|
+    t.bigint "bixe_id", null: false
+    t.bigint "modalidade_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bixo_id"], name: "index_confirmations_on_bixo_id"
+    t.index ["bixe_id"], name: "index_bixes_modalidades_on_bixe_id"
+    t.index ["modalidade_id"], name: "index_bixes_modalidades_on_modalidade_id"
+  end
+
+  create_table "confirmacoes", force: :cascade do |t|
+    t.bigint "bixe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bixe_id"], name: "index_confirmacoes_on_bixe_id"
   end
 
   create_table "modalidades", force: :cascade do |t|
@@ -45,32 +45,7 @@ ActiveRecord::Schema.define(version: 20190214193750) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pagamentos", force: :cascade do |t|
-    t.decimal "valor"
-    t.bigint "venda_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "veterano_id"
-    t.index ["venda_id"], name: "index_pagamentos_on_venda_id"
-    t.index ["veterano_id"], name: "index_pagamentos_on_veterano_id"
-  end
-
-  create_table "vendas", force: :cascade do |t|
-    t.bigint "bixo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "cor"
-    t.integer "tamanho"
-    t.boolean "caneca"
-    t.index ["bixo_id"], name: "index_vendas_on_bixo_id"
-  end
-
-  create_table "veteranos", force: :cascade do |t|
-    t.string "nome"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "confirmations", "bixos"
-  add_foreign_key "pagamentos", "veteranos"
+  add_foreign_key "bixes_modalidades", "bixes"
+  add_foreign_key "bixes_modalidades", "modalidades"
+  add_foreign_key "confirmacoes", "bixes"
 end
