@@ -21,7 +21,7 @@
 <div class="grid">
   <% @modalidade.bixes.each_with_index do |b, i| %>
     <div class="row list-item-<%= i % 2 %>">
-      <%= link_to bixo_path(b.id) do %>
+      <%= link_to bixe_path(b.id) do %>
         <h4>
           <div class="col-md-4">
             <%= b.nome %>
