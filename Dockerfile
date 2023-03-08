@@ -8,7 +8,7 @@ ENV PORT=3000 \
 WORKDIR ${APP_PATH}
 
 RUN apk add --update \
-  build-base git bash tzdata postgresql-dev && \
+  build-base git bash tzdata postgresql-dev gcompat && \
   gem install rails
 
 COPY . ./
