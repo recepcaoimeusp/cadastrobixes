@@ -1,7 +1,7 @@
 class Confirmacao < ApplicationRecord
   belongs_to :bixe
 
-  COLORS = [:YELLOW, :BLUE, :ORANGE, :GRAY, :PINK, :BLACK].freeze
+  COLORS = [:PURPLE, :ORANGE, :GREEN, :BLUE, :GOLD].freeze
 
 
   def team_color
