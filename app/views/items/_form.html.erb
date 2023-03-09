@@ -1,0 +1,37 @@
+<%= form_with(model: item, local: true) do |form| %>
+  <% if item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(item.errors.count, "error") %> erro(s) impediram a operação:</h2>
+
+      <ul>
+      <% item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome, 'Nome' %>
+    <%= form.text_field :nome, id: :item_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :preco, 'Preço' %>
+    <%= form.text_field :preco, id: :item_preco %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-xs-6">
+      <div class="actions">
+        <%= link_to 'Voltar à lista', items_path, class: 'btn btn-danger btn-lg btn-wide' %>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-md-offset-6 col-xs-6">
+      <div class="actions">
+        <%= form.submit (form.object.new_record? ? 'Inserir' : 'Editar'), class: 'btn btn-success btn-lg' %>
+      </div>
+    </div>
+  </div>
+<% end %>

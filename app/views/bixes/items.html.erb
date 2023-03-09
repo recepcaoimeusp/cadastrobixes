@@ -1,0 +1,24 @@
+<h1>Mudar compras de <%= @bixe.nome %></h1>
+
+<%= form_tag do %>
+  <% Item.all.each do |it| %>
+    <div class="checkbox">
+      <%= check_box_tag("items[#{it.id}]", it.nome, @check[it.id] == true) %>
+      <%= label_tag("items[#{it.id}]", it.nome) %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-3 col-xs-6">
+      <div class="actions">
+        <%= link_to 'Voltar', @bixe, class: 'btn btn-danger btn-lg btn-wide' %>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-md-offset-6 col-xs-6">
+      <div class="actions">
+        <%= submit_tag 'Confirmar', class: 'btn btn-success btn-lg' %>
+      </div>
+    </div>
+  </div>
+<% end %>

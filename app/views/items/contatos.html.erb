@@ -1,0 +1,23 @@
+<h1>Contatos por produto</h1>
+
+<h2>E-mails</h2>
+
+<pre>
+<% @items.each do |i| %>
+# <%= i.nome %>
+<% i.bixes.each do |b| %>
+<%= b.email %>
+<% end %>
+<% end %>
+</pre>
+
+<h2>Telefones</h2>
+
+<pre>
+<% @items.each do |i| %>
+# <%= i.nome %>
+<% i.bixes.each do |b| %>
+<%= b.telefone %> <%= b.nome %>
+<% end %>
+<% end %>
+</pre>

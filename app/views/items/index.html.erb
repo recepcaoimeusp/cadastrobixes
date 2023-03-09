@@ -1,0 +1,27 @@
+<h1>Produtos</h1>
+
+<div class="row lil-top-margin">
+  <div class="col-xs-6 col-xs-offset-6 col-md-2 col-md-offset-10">
+    <%= link_to 'Novo Produto', new_item_path, class: 'btn btn-success btn-lg' %>
+  </div>
+</div>
+
+<div class="grid">
+  <% @items.each_with_index do |p, i| %>
+    <div class="row list-item-<%= i % 2 %>">
+      <%= link_to item_path(p.id) do %>
+        <h4>
+          <div class="col-md-4 col-xs-6">
+            <%= p.nome %>
+          </div>
+        </h4>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row lil-top-margin">
+  <div class="col-xs-6 col-md-2">
+    <%= link_to 'Planilha', planilha_items_path, class: 'btn btn-primary btn-lg' %>
+  </div>
+</div>

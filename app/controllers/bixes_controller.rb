@@ -1,6 +1,6 @@
 class BixesController < ApplicationController
   before_action :set_bixe, only: [:show, :edit, :update, :destroy, :modalidades,
-                                  :modify_modalidades]
+                                  :modify_modalidades, :items, :modify_items]
 
   http_basic_authenticate_with name: ENV['ADMIN_USER'], password: ENV['ADMIN_PASSWORD'], only: [:emails]
 
@@ -38,6 +38,14 @@ class BixesController < ApplicationController
     end
   end
 
+  # GET /bixos/1/items
+  def items
+    @check = {}
+    @bixe.items.each do |i|
+      @check[i.id] = true
+    end
+  end
+
   # GET /bixos/contatos
   def contatos
     @bixes = Bixe.all
@@ -49,6 +57,20 @@ class BixesController < ApplicationController
     respond_to do |format|
       if @bixe.save
         format.html { redirect_to @bixe, notice: 'Modalidades modificadas com sucesso!' }
+        format.json { render :show, status: :created, location: @bixe }
+      else
+        format.html { flash[:error] = 'Deu caca em alguma coisa'; render :new }
+        format.json { render json: @bixe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # POST /bixos/1/items
+  def modify_items
+    @bixe.items = items_params.to_hash.map { |k,v| Item.find(k) }
+    respond_to do |format|
+      if @bixe.save
+        format.html { redirect_to @bixe, notice: 'Itens modificados com sucesso!' }
         format.json { render :show, status: :created, location: @bixe }
       else
         format.html { flash[:error] = 'Deu caca em alguma coisa'; render :new }
@@ -114,6 +136,14 @@ class BixesController < ApplicationController
         params[:modalidades] = {}
       else
         params.require(:modalidades).permit!
+      end
+    end
+
+    def items_params
+      if params[:items].nil? or params[:items].empty?
+        params[:items] = {}
+      else
+        params.require(:items).permit!
       end
     end
 end
