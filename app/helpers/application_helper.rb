@@ -24,4 +24,8 @@ module ApplicationHelper
   def modalidades_index?
     params[:controller] == "modalidades" and params[:action] == "index"
   end
+
+  def items_index?
+    params[:controller] == "items" and params[:action] == "index"
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_14_002825) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_08_205332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_002825) do
     t.integer "curso"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "bixes_items", force: :cascade do |t|
+    t.bigint "bixe_id", null: false
+    t.bigint "item_id", null: false
+    t.integer "quantity", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bixe_id"], name: "index_bixes_items_on_bixe_id"
+    t.index ["item_id"], name: "index_bixes_items_on_item_id"
   end
 
   create_table "bixes_modalidades", force: :cascade do |t|
@@ -39,12 +49,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_002825) do
     t.index ["bixe_id"], name: "index_confirmacoes_on_bixe_id"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "nome"
+    t.decimal "preco"
+    t.decimal "quantidade"
+    t.boolean "eh_do_kit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "modalidades", force: :cascade do |t|
     t.string "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bixes_items", "bixes"
+  add_foreign_key "bixes_items", "items"
   add_foreign_key "bixes_modalidades", "bixes"
   add_foreign_key "bixes_modalidades", "modalidades"
   add_foreign_key "confirmacoes", "bixes"

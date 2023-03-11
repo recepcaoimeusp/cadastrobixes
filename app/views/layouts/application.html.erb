@@ -28,6 +28,9 @@
         <% if modalidades_index? %><li class='active'><% else %><li><% end %>
           <%= link_to 'modalidades', modalidades_path %>
         </li>
+        <% if items_index? %><li class='active'><% else %><li><% end %>
+          <%= link_to 'produtos', items_path %>
+        </li>
         <% if confirmacoes_index? %><li class='active'><% else %><li><% end %>
           <%= link_to 'confirmações', confirmacoes_path %>
         </li>

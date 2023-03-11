@@ -1,0 +1,25 @@
+<h1>Planilha em CSV dos produtos</h1>
+
+<h2>Relação bixe-produto</h2>
+<pre>
+produto,bixe,telefone,email
+<% @items.each do |i| %>
+<% i.bixes.each do |b| %>
+"<%= i.nome %>","<%= b.nome %>","<%= b.telefone %>","<%= b.email %>"
+<% end %>
+<% end %>
+</pre>
+
+<h2>Relação produto-preço</h2>
+<pre>
+produto,preço,estoque,eh_do_kit,num_bixes_que_compraram
+<% @items.each do |i| %>
+ "<%= i.nome %>",<%= i.preco %>,<%= i.quantidade %>,<%= i.eh_do_kit %>,<%= i.bixes.count %>
+<% end %>
+</pre>
+
+<div class="row lil-top-margin">
+  <div class="col-xs-6 col-md-2">
+    <%= link_to 'Voltar', items_path, class: 'btn btn-danger btn-lg' %>
+  </div>
+</div>
