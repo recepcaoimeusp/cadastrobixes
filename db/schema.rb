@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_205332) do
   create_table "bixes_items", force: :cascade do |t|
     t.bigint "bixe_id", null: false
     t.bigint "item_id", null: false
+    t.integer "quantity", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bixe_id"], name: "index_bixes_items_on_bixe_id"
@@ -51,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_205332) do
   create_table "items", force: :cascade do |t|
     t.string "nome"
     t.decimal "preco"
+    t.decimal "quantidade"
+    t.boolean "eh_do_kit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

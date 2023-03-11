@@ -46,6 +46,7 @@ class BixesController < ApplicationController
     end
   end
 
+
   # GET /bixos/contatos
   def contatos
     @bixes = Bixe.all

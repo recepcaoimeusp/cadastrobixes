@@ -5,16 +5,16 @@
 produto,bixe,telefone,email
 <% @items.each do |i| %>
 <% i.bixes.each do |b| %>
-<%= i.nome %>,<%= b.nome %>,<%= b.telefone %>,<%= b.email %>
+"<%= i.nome %>","<%= b.nome %>","<%= b.telefone %>","<%= b.email %>"
 <% end %>
 <% end %>
 </pre>
 
 <h2>Relação produto-preço</h2>
 <pre>
-produto,preço
+produto,preço,estoque,eh_do_kit,num_bixes_que_compraram
 <% @items.each do |i| %>
-<%= i.nome %>,<%= i.preco %>
+ "<%= i.nome %>",<%= i.preco %>,<%= i.quantidade %>,<%= i.eh_do_kit %>,<%= i.bixes.count %>
 <% end %>
 </pre>
 

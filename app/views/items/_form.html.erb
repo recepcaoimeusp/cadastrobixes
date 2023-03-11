@@ -21,6 +21,16 @@
     <%= form.text_field :preco, id: :item_preco %>
   </div>
 
+  <div class="field">
+    <%= form.label :quantidade, 'Quantidade' %>
+    <%= form.text_field :quantidade, id: :item_quantidade %>
+  </div>
+
+  <div class="field">
+    <%= form.label :eh_do_kit, 'Este produto faz parte do Kit Bixe' %>
+    <%= form.check_box :eh_do_kit, id: :item_eh_do_kit %>
+  </div>
+
   <div class="row">
     <div class="col-md-3 col-xs-6">
       <div class="actions">

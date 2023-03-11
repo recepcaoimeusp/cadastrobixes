@@ -6,17 +6,37 @@
   </div>
 </div>
 
+<h2>Kit Bixe</h2>
 <div class="grid">
   <% @items.each_with_index do |p, i| %>
-    <div class="row list-item-<%= i % 2 %>">
-      <%= link_to item_path(p.id) do %>
-        <h4>
-          <div class="col-md-4 col-xs-6">
-            <%= p.nome %>
-          </div>
-        </h4>
-      <% end %>
-    </div>
+    <% if p.eh_do_kit %>
+      <div class="row list-item-<%= i % 2 %>">
+        <%= link_to item_path(p.id) do %>
+          <h4>
+            <div class="col-md-4 col-xs-6">
+              <%= p.nome %>
+            </div>
+          </h4>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<h2>Separados</h2>
+<div class="grid">
+  <% @items.each_with_index do |p, i| %>
+    <% unless p.eh_do_kit %>
+      <div class="row list-item-<%= i % 2 %>">
+        <%= link_to item_path(p.id) do %>
+          <h4>
+            <div class="col-md-4 col-xs-6">
+              <%= p.nome %>
+            </div>
+          </h4>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
