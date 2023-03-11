@@ -67,7 +67,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to items_url, notice: 'O produto foi removido com sucesso.' }
       format.json { head :no_content }
     end
   end
