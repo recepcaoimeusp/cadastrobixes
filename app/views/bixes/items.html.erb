@@ -4,26 +4,17 @@
 <%= form_tag do %>
   <h4>Produtos do Kit Bixe</h4>
   <div style="padding-left: 10%">
-    <div class="selectOneEach" style="margin: 20px 0px; display: flex; align-items: center; justify-content: space-between;">
-    
-    
-    <button type="button" id="increase-one" style="border: 1.4px solid #0afb3a; padding: 10px; border-radius: 5px;"/>Acrescentar 1</button>
-    <label type="text" for="select-all" >Alterar 1 unidade de item para todos</label>
-    <button type="button" id="decrease-one" style="border: 1.4px solid #dc0030; padding: 10px; border-radius: 5px;"/>Decrementar 1</button>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-     
+    <div class="selectOneEach container-items-select">
+      <button type="button" id="increase-one" style="border: 1.4px solid #0afb3a; padding: 10px; border-radius: 5px;"/>Acrescentar 1</button>
+      <label type="text" for="select-all" >Alterar 1 unidade de item para todos</label>
+      <button type="button" id="decrease-one" style="border: 1.4px solid #dc0030; padding: 10px; border-radius: 5px;"/>Decrementar 1</button>
     </div>
     <hr />
     <% Item.all.each do |it| %>
       <% if it.eh_do_kit %>
-        <div class="chooseQuantity" style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="chooseQuantity container-items-select">
         	<%= label_tag("items[#{it.id}]", it.nome) %>
-        	<%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, style: "width: 55px; margin-right: 35em;") %>
+        	<%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, style: "width: 55px;") %>
         	
           
         </div>
@@ -35,9 +26,9 @@
   <div style="padding-left: 10%">
     <% Item.all.each do |it| %>
       <% unless it.eh_do_kit %>
-        <div class="chooseQuantity" style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="chooseQuantity container-items-select">
         <%= label_tag("items[#{it.id}]", it.nome) %>
-        <%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, style: "width: 55px; margin-right: 35em;") %>
+        <%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, style: "width: 55px;") %>
         <!-- Nota: alterar value para o valor de cada produto do bixo. -->
           
         </div>
@@ -84,3 +75,13 @@
 
   });
 </script>
+
+<style>
+.container-items-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  max-width: 675px;
+}
+</style>
