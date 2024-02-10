@@ -5,9 +5,9 @@
   <h4>Produtos do Kit Bixe</h4>
   <div style="padding-left: 10%">
     <div class="selectOneEach container-items-select">
-      <button type="button" id="increase-one" style="border: 1.4px solid #0afb3a; padding: 10px; border-radius: 5px;"/>Acrescentar 1</button>
-      <label type="text" for="select-all" >Alterar 1 unidade de item para todos</label>
-      <button type="button" id="decrease-one" style="border: 1.4px solid #dc0030; padding: 10px; border-radius: 5px;"/>Decrementar 1</button>
+      <button type="button" class="square-button" id="decrease-one" style="border: 1.4px solid #dc0030; padding: 10px; border-radius: 5px; color: #dc0030"/>-1</button>
+      <label type="text" for="select-all" >Alterar 1 unidade para todos os itens do Kit</label>
+      <button type="button" class="square-button" id="increase-one" style="border: 1.4px solid #1a9441; padding: 10px; border-radius: 5px; color: #1a9441"/>+1</button>
     </div>
     <hr />
     <% Item.all.each do |it| %>
@@ -83,5 +83,10 @@
   align-items: center;
   padding: 0px 20px;
   max-width: 675px;
+}
+
+.square-button {
+  min-width: 40px;
+  min-height: 40px;
 }
 </style>
