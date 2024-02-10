@@ -13,10 +13,8 @@
     <% Item.all.each do |it| %>
       <% if it.eh_do_kit %>
         <div class="chooseQuantity container-items-select">
-        	<%= label_tag("items[#{it.id}]", it.nome) %>
-        	<%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, style: "width: 55px;") %>
-        	
-          
+          <%= label_tag("items[#{it.id}]", it.nome) %>
+          <%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, class: "quantity-input") %>
         </div>
       <% end %>
     <% end %>
@@ -27,10 +25,8 @@
     <% Item.all.each do |it| %>
       <% unless it.eh_do_kit %>
         <div class="chooseQuantity container-items-select">
-        <%= label_tag("items[#{it.id}]", it.nome) %>
-        <%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, style: "width: 55px;") %>
-        <!-- Nota: alterar value para o valor de cada produto do bixo. -->
-          
+          <%= label_tag("items[#{it.id}]", it.nome) %>
+          <%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, class: "quantity-input") %>
         </div>
       <% end %>
     <% end %>
@@ -56,23 +52,44 @@
     var increaseByOne = document.querySelector("#increase-one");
     var decreaseByOne = document.querySelector("#decrease-one");
     var numberInputs = document.querySelectorAll("input[type='number'][data-eh-do-kit='true']");
+    var allNumberInputs = document.querySelectorAll("input[type='number']");
+
+    function highlightInput(input) {
+      if (parseInt(input.value) > 0) {
+        input.classList.add("selected-item");
+      } else {
+        input.classList.remove("selected-item");
+      }
+    }
 
     increaseByOne.addEventListener("click", function() {
       for (var i = 0; i < numberInputs.length; i++) {
-      	if (numberInputs[i].value == "") {
-      		numberInputs[i].value = "0";
-      	}
+        if (numberInputs[i].value == "") {
+          numberInputs[i].value = "0";
+        }
         numberInputs[i].value = parseInt(numberInputs[i].value) + 1;
+        highlightInput(numberInputs[i]); 
       }
     });
     
     decreaseByOne.addEventListener("click", function() {
       for (var i = 0; i < numberInputs.length; i++) {
-      	if (numberInputs[i].value > 0) {
-        numberInputs[i].value = parseInt(numberInputs[i].value) - 1;
-      } }
+        if (numberInputs[i].value > 0) {
+          numberInputs[i].value = parseInt(numberInputs[i].value) - 1;
+          highlightInput(numberInputs[i]);
+        }
+      }
     });
 
+    for (var i = 0; i < allNumberInputs.length; i++) {
+      allNumberInputs[i].addEventListener("input", function() {
+        highlightInput(this);
+      });
+      if (allNumberInputs[i].value == "") {
+        allNumberInputs[i].value = "0";
+      }
+      highlightInput(allNumberInputs[i]);
+    }
   });
 </script>
 
@@ -88,5 +105,18 @@
 .square-button {
   min-width: 40px;
   min-height: 40px;
+}
+
+.selected-item {
+  background-color: #5da355;
+  border-radius: 5px;
+  color: white;
+}
+
+.quantity-input {
+  padding: 5px 0px 5px 10px;
+  max-width: 70px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 </style>
