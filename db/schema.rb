@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_205332) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_06_184442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bixe_items", force: :cascade do |t|
+    t.bigint "bixe_id"
+    t.bigint "item_id"
+    t.integer "quantity", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bixe_id"], name: "index_bixe_items_on_bixe_id"
+    t.index ["item_id"], name: "index_bixe_items_on_item_id"
+  end
 
   create_table "bixes", force: :cascade do |t|
     t.string "nome"
@@ -64,6 +74,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_205332) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bixe_items", "bixes"
+  add_foreign_key "bixe_items", "items"
   add_foreign_key "bixes_items", "bixes"
   add_foreign_key "bixes_items", "items"
   add_foreign_key "bixes_modalidades", "bixes"

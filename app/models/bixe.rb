@@ -5,7 +5,8 @@ class Bixe < ApplicationRecord
   validates :curso, presence: true
 
   has_and_belongs_to_many :modalidades
-  has_and_belongs_to_many :items
+  has_many :bixe_items
+  has_many :items, through: :bixe_items
   has_one :confirmacao
 
   enum curso: [:LIC, :PURA, :BCC, :ESTAT, :APLICADA, :BMAC, :LICNOTURNO].freeze

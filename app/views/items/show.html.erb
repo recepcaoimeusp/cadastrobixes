@@ -19,8 +19,9 @@
 <h2>Bixes que compraram o produto</h2>
 
 <div class="grid">
+	<!--
   <% @item.bixes.each_with_index do |b, i| %>
-    <div class="row list-item-<%= i % 2 %>">
+    <div class="row list-item-<%= i%2 %>">
       <%= link_to bixe_path(b.id) do %>
         <h4>
           <div class="col-md-4">
@@ -32,8 +33,38 @@
           <div class="col-md-4">
             <%= b.telefone %>
           </div>
+          <div class="col-md-4">
+            <%= b.email %>
+          </div>
+          
         </h4>
+        
       <% end %>
     </div>
+  <% end %>
+  -->
+  <% @item.bixe_items.each_with_index do |b, i| %>
+  
+      <div class="row list-item-<%= i%2 %>" style="font-size: 40px;">
+      <%= link_to bixe_path(b.bixe.id) do %>
+        <h4>
+          <div class="col-md-3">
+            <%= b.bixe.nome %>
+          </div>
+          <div class="col-md-3">
+            <%= b.bixe.email %>
+          </div>
+          <div class="col-md-3">
+            <%= b.bixe.telefone %>
+          </div>
+          <div class="col-md-3">
+            <%= b.quantity %>
+          </div>
+          
+        </h4>
+        
+      <% end %>
+    </div>
+  
   <% end %>
 </div>

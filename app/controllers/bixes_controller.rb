@@ -40,9 +40,9 @@ class BixesController < ApplicationController
 
   # GET /bixos/1/items
   def items
-    @check = {}
-    @bixe.items.each do |i|
-      @check[i.id] = true
+    @quantities = {}
+    @bixe.bixe_items.each do |i|
+      @quantities[i.item_id] = i.quantity 
     end
   end
 
@@ -68,7 +68,16 @@ class BixesController < ApplicationController
 
   # POST /bixos/1/items
   def modify_items
-    @bixe.items = items_params.to_hash.map { |k,v| Item.find(k) }
+    items_params.each do |item_id, quantity| 
+      bixe_item = @bixe.bixe_items.find_or_create_by(item_id: item_id)
+      if quantity.to_i > 0
+        bixe_item.quantity = quantity  
+        bixe_item.save
+      else
+        bixe_item.destroy
+      end
+    end
+
     respond_to do |format|
       if @bixe.save
         format.html { redirect_to @bixe, notice: 'Itens modificados com sucesso!' }

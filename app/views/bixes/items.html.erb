@@ -1,35 +1,37 @@
 <h1>Mudar compras de <%= @bixe.nome %></h1>
 
+<hr />
 <%= form_tag do %>
   <h4>Produtos do Kit Bixe</h4>
   <div style="padding-left: 10%">
-    <div class="checkbox" style="margin: 20px 0px">
-      <input type="checkbox" id="select-all" />
-      <label for="select-all">Selecionar todos</label>
+    <div class="selectOneEach container-items-select">
+      <button type="button" class="square-button" id="decrease-one" style="border: 1.4px solid #dc0030; padding: 10px; border-radius: 5px; color: #dc0030"/>-1</button>
+      <label type="text" for="select-all" >Alterar 1 unidade para todos os itens do Kit</label>
+      <button type="button" class="square-button" id="increase-one" style="border: 1.4px solid #1a9441; padding: 10px; border-radius: 5px; color: #1a9441"/>+1</button>
     </div>
     <hr />
     <% Item.all.each do |it| %>
       <% if it.eh_do_kit %>
-        <div class="checkbox">
-          <%= check_box_tag("items[#{it.id}]", it.nome, @check[it.id] == true, data: { "eh-do-kit": it.eh_do_kit }) %>
+        <div class="chooseQuantity container-items-select">
           <%= label_tag("items[#{it.id}]", it.nome) %>
+          <%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, class: "quantity-input") %>
         </div>
       <% end %>
     <% end %>
   </div>
-
+	<hr />
   <h4>Produtos Separados</h4>
   <div style="padding-left: 10%">
     <% Item.all.each do |it| %>
       <% unless it.eh_do_kit %>
-        <div class="checkbox">
-          <%= check_box_tag("items[#{it.id}]", it.nome, @check[it.id] == true, data: { "eh-do-kit": it.eh_do_kit }) %>
+        <div class="chooseQuantity container-items-select">
           <%= label_tag("items[#{it.id}]", it.nome) %>
+          <%= number_field_tag("items[#{it.id}]", it.nome, value: @quantities[it.id], min: 0, data: { "eh-do-kit": it.eh_do_kit }, class: "quantity-input") %>
         </div>
       <% end %>
     <% end %>
   </div>
-
+	<br>
   <div class="row">
     <div class="col-md-3 col-xs-6">
       <div class="actions">
@@ -47,33 +49,74 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    var selectAllCheckbox = document.querySelector("#select-all");
-    var checkboxes = document.querySelectorAll("input[type='checkbox'][data-eh-do-kit='true']");
+    var increaseByOne = document.querySelector("#increase-one");
+    var decreaseByOne = document.querySelector("#decrease-one");
+    var numberInputs = document.querySelectorAll("input[type='number'][data-eh-do-kit='true']");
+    var allNumberInputs = document.querySelectorAll("input[type='number']");
 
-    selectAllCheckbox.addEventListener("click", function() {
-      for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = selectAllCheckbox.checked;
+    function highlightInput(input) {
+      if (parseInt(input.value) > 0) {
+        input.classList.add("selected-item");
+      } else {
+        input.classList.remove("selected-item");
+      }
+    }
+
+    increaseByOne.addEventListener("click", function() {
+      for (var i = 0; i < numberInputs.length; i++) {
+        if (numberInputs[i].value == "") {
+          numberInputs[i].value = "0";
+        }
+        numberInputs[i].value = parseInt(numberInputs[i].value) + 1;
+        highlightInput(numberInputs[i]); 
+      }
+    });
+    
+    decreaseByOne.addEventListener("click", function() {
+      for (var i = 0; i < numberInputs.length; i++) {
+        if (numberInputs[i].value > 0) {
+          numberInputs[i].value = parseInt(numberInputs[i].value) - 1;
+          highlightInput(numberInputs[i]);
+        }
       }
     });
 
-    function all_checked() {
-      var allChecked = true;
-      for (var j = 0; j < checkboxes.length; j++) {
-        if (!checkboxes[j].checked) {
-          allChecked = false;
-          break;
-        }
-      }
-      return allChecked;
-    }
-
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].addEventListener("click", function() {
-        selectAllCheckbox.checked = all_checked();
+    for (var i = 0; i < allNumberInputs.length; i++) {
+      allNumberInputs[i].addEventListener("input", function() {
+        highlightInput(this);
       });
+      if (allNumberInputs[i].value == "") {
+        allNumberInputs[i].value = "0";
+      }
+      highlightInput(allNumberInputs[i]);
     }
-
-    selectAllCheckbox.checked = all_checked();
-
   });
 </script>
+
+<style>
+.container-items-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  max-width: 675px;
+}
+
+.square-button {
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.selected-item {
+  background-color: #5da355;
+  border-radius: 5px;
+  color: white;
+}
+
+.quantity-input {
+  padding: 5px 0px 5px 10px;
+  max-width: 70px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+</style>

@@ -54,9 +54,9 @@
     <% if @bixe.items.empty? %>
       <p><em>Nenhum</em></p>
     <% else %>
-      <% @bixe.items.each do |it| %>
+      <% @bixe.bixe_items.each do |it| %>
         <p>
-          <%= it.nome %>
+        <%= it.item.nome %> - <%= it.quantity %>
         </p>
       <% end %>
     <% end %>

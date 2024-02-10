@@ -4,5 +4,6 @@ class Item < ApplicationRecord
   validates :quantidade, presence: true
   validates :eh_do_kit, inclusion: { in: [true, false] }
 
-  has_and_belongs_to_many :bixes
+  has_many :bixe_items
+  has_many :bixes, through: :bixe_items
 end

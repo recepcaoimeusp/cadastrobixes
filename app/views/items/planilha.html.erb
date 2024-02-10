@@ -2,10 +2,10 @@
 
 <h2>Relação bixe-produto</h2>
 <pre>
-produto,bixe,telefone,email
+produto,bixe,quantidade,telefone,email
 <% @items.each do |i| %>
-<% i.bixes.each do |b| %>
-"<%= i.nome %>","<%= b.nome %>","<%= b.telefone %>","<%= b.email %>"
+<% i.bixe_items.each do |b| %>
+"<%= i.nome %>","<%= b.bixe.nome %>",<%= b.quantity %>,"<%= b.bixe.telefone %>","<%= b.bixe.email %>"
 <% end %>
 <% end %>
 </pre>
