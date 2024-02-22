@@ -71,6 +71,13 @@ class BixesController < ApplicationController
     items_params.each do |item_id, quantity| 
       bixe_item = @bixe.bixe_items.find_or_create_by(item_id: item_id)
       if quantity.to_i > 0
+        already_bought = BixeItem.where(item_id: item_id).map(&:quantity).sum - bixe_item.quantity
+        item = Item.find(item_id)
+        if quantity.to_i > item.quantidade - already_bought
+          flash[:error] = "Não há quantidade suficiente do item #{item.nome} em estoque"
+          redirect_to action: "items", id: @bixe.id and return
+        end
+        
         bixe_item.quantity = quantity  
         bixe_item.save
       else
